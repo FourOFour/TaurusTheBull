@@ -307,3 +307,64 @@ Which had the following result **:**
 ```
 
 Got to say, nice way to check the type `str1.constructor === String`, Base on the question it self i am not sure about `length>0` to not return empty string.
+
+
+<hr>
+<br>
+
+**5.** Write a JavaScript function to convert a string in abbreviated form.
+
+**Test Data :**
+
+```js
+console.log(abbrev_name("Robin Singh")); // "Robin S."
+```
+
+<br>
+
+**My Answer**
+
+My first thought was what is the proper way to do **abbreviated form**, With a some help from google and the expected answer, I went with the following code **:**
+
+```js
+function abbrev_name(v) {
+    let arr = v.trim().split(' ');
+
+    if (arr.length > 1)
+        return arr[0] + ' ' + arr[1].charAt(0) + '.';
+    else
+        return arr[0];
+}
+console.log(abbrev_name("Robin Singh"));
+console.log(abbrev_name("Robin "));
+```
+
+Which had the following result **:**
+
+```js
+"Robin S."
+"Robin"
+```
+
+<br>
+
+**Provided Solution**
+
+[**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-5.php)**:**
+
+```js
+abbrev_name = function (str1) {
+    var split_names = str1.trim().split(" ");
+    if (split_names.length > 1) {
+        return (split_names[0] + " " + split_names[1].charAt(0) + ".");
+    }
+    return split_names[0];
+};
+console.log(abbrev_name("Robin Singh"));
+```
+
+Which had the following result **:**
+
+```js
+"Robin S."
+```
