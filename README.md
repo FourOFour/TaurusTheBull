@@ -11,7 +11,7 @@
 * [**String**](#String)
     * [w3resource - Exercises, Practice, Solution](https://www.w3resource.com/javascript-exercises/javascript-string-exercises.php)
 
-___
+<hr>
 <br>
 
 <h2 id="String"><b>String</b></h2>
@@ -21,11 +21,14 @@ ___
 **Test Data :**
 
 ```js
-console.log(is_string('w3resource'));
-true
-console.log(is_string([1, 2, 4, 0]));
-false
+console.log(is_string('w3resource')); true
+console.log(is_string([1, 2, 4, 0])); false
 ```
+
+<br>
+
+**My Answer**
+
 My first thought is to go with **:**
 
 ```js
@@ -42,7 +45,11 @@ true
 false
 ```
 
-But in the <a href="https://www.w3resource.com/javascript-exercises/javascript-string-exercise-1.php">solution</a> page it used the following method **:**
+<br>
+
+**Provided Solution**
+
+But in the [solution](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-1.php) page it used the following method **:**
 
 ```js
 is_string = function(input) {
@@ -51,5 +58,34 @@ is_string = function(input) {
     else
         return false;   
 };
+console.log(is_string('w3resource'));
+console.log(is_string([1, 2, 4, 0]));
 ```
-Which is smart method, because it can catches strings that was made by ` new String() `
+Which resulted **:**
+
+```js
+true
+false
+```
+
+Which is smart method, because it can catches strings that was created by `new String()`, But i would say why make `Object` out of **Primitive Value** and also we are getting a **value** from `input`, So i dont think we are ever going to run into that problem.
+
+You can test the following code for both method to understand this part **:**
+
+```js
+console.log(is_string(new String('Why?')));
+```
+
+<hr>
+<br>
+
+**2.** Write a JavaScript function to check whether a string is `blank` or not.
+
+**Test Data :**
+
+```js
+console.log(is_Blank(''));
+console.log(is_Blank('abc'));
+true
+false
+```
