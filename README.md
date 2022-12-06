@@ -2,7 +2,7 @@
 
 <h1 align="center"> Welcome to javascript-exercise-404</h1>
 
-#### This is a place that I will put all my javascript exercises in, which safe to say mainly is involved writing a function or a programmer to answer a qesution or challange,I mainly made this repository for exercies purpose so feel free to join in / contribute, send or make a challange.
+#### This is a place that I will put some of my javascript exercises in, which is safe to say, this is involved writing a function or a programmer to answer a qesution or challange,I made this repository for exercies purpose so feel free to join in / contribute, send or make a challange.
 
 <br>
 
@@ -21,8 +21,8 @@
 **Test Data :**
 
 ```js
-console.log(is_string('w3resource')); true
-console.log(is_string([1, 2, 4, 0])); false
+console.log(is_string('w3resource')); // true
+console.log(is_string([1, 2, 4, 0])); // false
 ```
 
 <br>
@@ -33,12 +33,16 @@ My first thought is to go with **:**
 
 ```js
 function is_string(v) {
-    return typeof v === "string";
+    return typeof v == "string";
+    /*
+    *   Since 'typeof v' only returns a string value it would just do ===  
+    */
 }
 console.log(is_string('w3resource'));
 console.log(is_string([1, 2, 4, 0]));
 ```
-Which resulted **:**
+
+Which had the following result **:**
 
 ```js
 true
@@ -49,7 +53,7 @@ false
 
 **Provided Solution**
 
-But in the [**solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-1.php) page it used the following method **:**
+But in the [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-1.php) page it used the following method **:**
 
 ```js
 is_string = function(input) {
@@ -61,7 +65,7 @@ is_string = function(input) {
 console.log(is_string('w3resource'));
 console.log(is_string([1, 2, 4, 0]));
 ```
-Which resulted **:**
+Which had the following result **:**
 
 ```js
 true
@@ -84,8 +88,145 @@ console.log(is_string(new String('Why?')));
 **Test Data :**
 
 ```js
+console.log(is_Blank('')); // true
+console.log(is_Blank('abc')); // false
+```
+
+<br>
+
+**My Answer**
+
+My first thought is to go with **:**
+
+```js
+function is_Blank(v) {
+    return v.length == 0;
+    /*
+    *   If v.length is undefined still would get false
+    *   If not both side will be number so it would just do ===
+    */
+}
 console.log(is_Blank(''));
 console.log(is_Blank('abc'));
+```
+
+Which had the following result **:**
+
+```js
 true
 false
+```
+
+Have in mind im not checking for **type** of the `v`, just trusting that the question will always provide string as argument.
+
+If i wanted to make sure `v` is string it would go as the following code **:**
+
+```js
+function is_Blank(v) {
+    if (typeof v == 'string') 
+        return v.length == 0;
+    else 
+        console.log('WHY?!'); // handling the wrong type
+}
+console.log(is_Blank(''));
+console.log(is_Blank('abc'));
+```
+
+<br>
+
+**Provided Solution**
+
+[**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-2.php)**:**
+
+```js
+is_Blank =  function(input) {
+    if (input.length === 0)
+        return true;
+    else 
+        return false;
+}
+console.log(is_Blank(''));
+console.log(is_Blank('abc'));
+```
+
+Which had the following result **:**
+
+```js
+true
+false
+```
+
+<hr>
+<br>
+
+**3.** Write a JavaScript function to split a string and convert it into an array of words.
+
+**Test Data :**
+
+```js
+console.log(string_to_array("Robin Singh")); // ["Robin", "Singh"]
+```
+
+<br>
+
+**My Answer**
+
+My first thought is to go with **:**
+
+```js
+function string_to_array(v) {
+    return v.split(' ');
+}
+console.log(string_to_array("Robin Singh"));
+```
+
+Which had the following result **:**
+
+```js
+['Robin', 'Singh']
+```
+
+But it did come to my mind since i am spliting a string base on `white-space` maybe i should make sure there is nothing at the end or start of the string aswel.
+
+It went as the following code **:**
+
+```js
+function string_to_array(v) {
+    return v.trim().split(' ');
+}
+console.log(string_to_array("  Robin Singh "));
+```
+
+Also lets do extra version with `RegExe` while i am at it.
+
+```js
+function string_to_array(v) {
+    return v.replace(/^\s*|\s*$/g, '').split(/\s/);
+}
+console.log(string_to_array("  Robin Singh "));
+```
+
+Which both had the following result **:**
+
+```js
+['Robin', 'Singh']
+```
+
+<br>
+
+**Provided Solution**
+
+[**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-3.php)**:**
+
+```js
+string_to_array = function (str) {
+     return str.trim().split(" ");
+};
+console.log(string_to_array("Robin Singh"));
+```
+
+Which had the following result **:**
+
+```js
+["Robin","Singh"]
 ```
