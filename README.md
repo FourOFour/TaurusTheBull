@@ -197,7 +197,7 @@ function string_to_array(v) {
 console.log(string_to_array("  Robin Singh "));
 ```
 
-Also lets do extra version with `RegExe` while i am at it.
+Also lets do extra version with `RegExp` while i am at it.
 
 ```js
 function string_to_array(v) {
