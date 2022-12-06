@@ -274,7 +274,7 @@ And if we want to do it with `RegExp`, it would go as the following code **:**
 
 ```js
 function truncate_string(v, i) {
-    return v.match('^(.|\n){' + i + '}')[0]; // any character except newline Or newline 'i' times
+    return v.match('^(.|\n){' + i + '}')[0]; // (any character except newline Or newline) 'i' times
 }
 console.log(truncate_string("Robin Singh",4));
 ```
