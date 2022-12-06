@@ -1,6 +1,6 @@
-<br>
-#Welcome to **javascript-exercise-404**
-<br>
+---
+#Welcome to javascript-exercise-404
+---
 This is a place I will put all my javascript exercises which safe to say mainly is involved writing a function or a programmer to answer a qesution or challange,I mainly made this repository for exercies purpose so feel free to join in / contribute, send or make a challange.
 
 ## Categories
