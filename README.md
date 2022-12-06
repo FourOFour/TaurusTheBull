@@ -230,3 +230,80 @@ Which had the following result **:**
 ```js
 ["Robin","Singh"]
 ```
+
+<hr>
+<br>
+
+**4.** Write a JavaScript function to extract a specified number of characters from a string.
+
+**Test Data :**
+
+```js
+console.log(truncate_string("Robin Singh",4)); // "Robi"
+```
+
+<br>
+
+**My Answer**
+
+My first thought is to go with **:**
+
+```js
+function truncate_string(v, i) {
+    return v.substring(0, i);
+}
+console.log(truncate_string("Robin Singh",4));
+```
+
+Or
+
+```js
+function truncate_string(v, i) {
+    return v.slice(0, i);
+}
+console.log(truncate_string("Robin Singh",4));
+```
+
+Which both had the following result **:**
+
+```js
+"Robi"
+```
+
+And if we want to do it with `RegExp`, it would go as the following code **:**
+
+```js
+function truncate_string(v, i) {
+    return v.match('^(.|\n){' + i + '}')[0]; // any character except newline Or newline 'i' times
+}
+console.log(truncate_string("Robin Singh",4));
+```
+
+Which also had the following result **:**
+
+```js
+"Robi"
+```
+
+<br>
+
+**Provided Solution**
+
+[**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-4.php)**:**
+
+```js
+truncate_string = function (str1, length) {
+    if ((str1.constructor === String) && (length>0)) {
+        return str1.slice(0, length);
+    }
+};
+console.log(truncate_string("Robin Singh",4));
+```
+
+Which had the following result **:**
+
+```js
+"Robi"
+```
+
+Got to say, nice way to check the type `str1.constructor === String`, Base on the question it self i am not sure about `length>0` to not return empty string.
