@@ -16,7 +16,7 @@
 
 <h2 id="String"><b>String</b></h2>
 
-**1.** Write a JavaScript function to check whether an `input` is a string or not.
+**1.** Write a JavaScript function to check whether an **input** is a string or not.
 
 **Test Data :**
 
@@ -49,7 +49,7 @@ false
 
 **Provided Solution**
 
-But in the [solution](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-1.php) page it used the following method **:**
+But in the [**solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-1.php) page it used the following method **:**
 
 ```js
 is_string = function(input) {
@@ -68,7 +68,7 @@ true
 false
 ```
 
-Which is smart method, because it can catches strings that was created by `new String()`, But i would say why make `Object` out of **Primitive Value** and also we are getting a **value** from `input`, So i dont think we are ever going to run into that problem.
+Which is smart method, because it can catches strings that was created by `new String()`, But i would say why make `Object` out of **Primitive Value** and also we are getting a **value** from **input**, So i dont think we are ever going to run into that problem.
 
 You can test the following code for both method to understand this part **:**
 
@@ -79,7 +79,7 @@ console.log(is_string(new String('Why?')));
 <hr>
 <br>
 
-**2.** Write a JavaScript function to check whether a string is `blank` or not.
+**2.** Write a JavaScript function to check whether a string is **blank** or not.
 
 **Test Data :**
 
