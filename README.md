@@ -16,7 +16,7 @@
 
 <h2 id="String"><b>String</b></h2>
 
-**1.** Write a JavaScript function to check whether an **input** is a string or not.
+### **1.** Write a JavaScript function to check whether an **input** is a string or not.
 
 **Test Data :**
 
@@ -83,7 +83,7 @@ console.log(is_string(new String('Why?')));
 <hr>
 <br>
 
-**2.** Write a JavaScript function to check whether a string is **blank** or not.
+### **2.** Write a JavaScript function to check whether a string is **blank** or not.
 
 **Test Data :**
 
@@ -159,7 +159,7 @@ false
 <hr>
 <br>
 
-**3.** Write a JavaScript function to split a string and convert it into an array of words.
+### **3.** Write a JavaScript function to split a string and convert it into an array of words.
 
 **Test Data :**
 
@@ -234,7 +234,7 @@ Which had the following result **:**
 <hr>
 <br>
 
-**4.** Write a JavaScript function to extract a specified number of characters from a string.
+### **4.** Write a JavaScript function to extract a specified number of characters from a string.
 
 **Test Data :**
 
@@ -312,7 +312,7 @@ Got to say, nice way to check the type `str1.constructor === String`, Base on th
 <hr>
 <br>
 
-**5.** Write a JavaScript function to convert a string in abbreviated form.
+### **5.** Write a JavaScript function to convert a string in abbreviated form.
 
 **Test Data :**
 
