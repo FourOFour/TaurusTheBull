@@ -368,3 +368,104 @@ Which had the following result **:**
 ```js
 "Robin S."
 ```
+
+<hr>
+<br>
+
+### **6.** Write a JavaScript function to hide email addresses to protect from unauthorized user.
+
+**Test Data :**
+
+```js
+console.log(protect_email("robin_singh@example.com")); // "robin...@example.com"
+```
+
+<br>
+
+**My Answer**
+
+My first thought was how many words should i trim ? or how many words should it be at max on left hand side of `@`? i could go static ( 1 to 5 ) character max or divide that ( 2 or 3 ), I will just go with static one first then just refine it. **:**
+
+```js
+function protect_email(v) {
+    var arr;
+
+    arr = v.split('@');
+
+    return arr[0].slice(0, arr[0].length > 5 ? 5 : 1) + '...' + '@' + arr[1];
+}
+console.log(protect_email("robin_singh@example.com"));
+```
+
+Which had the following result **:**
+
+```js
+"robin...@example.com"
+```
+
+Now lets refine it a bit **:**
+
+```js
+function protect_email(v) {
+    const regex = /^.+@.+$/; // make sure it's email (simple one ofc)
+    var arr;
+
+    if (regex.test(v)) {
+        arr = v.trim().split('@');
+
+        return arr[0].slice(0, arr[0].length / 2) + '...@' + arr[1];
+    }
+}
+console.log(protect_email("robin_singh@example.com"));
+```
+
+How about a RegExp version **:**
+
+```js
+function protect_email(v) {
+    const regex = /^(.+)@(.+)$/; // Now we use capturing groups
+    var execVal;
+
+    if (regex.test(v)) {
+        execVal = regex.exec(v.trim());
+
+        return execVal[1].slice(0, execVal[1].length / 2) + '...@' + execVal[2];
+    }
+}
+console.log(protect_email("robin_singh@example.com"));
+```
+
+Which both had the following result **:**
+
+```js
+"robin...@example.com"
+```
+
+<br>
+
+**Provided Solution**
+
+[**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-6.php)**:**
+
+```js
+protect_email = function (user_email) {
+    var avg, splitted, part1, part2;
+    
+    splitted = user_email.split("@");
+    part1 = splitted[0];
+    avg = part1.length / 2;
+    part1 = part1.substring(0, (part1.length - avg));
+    part2 = splitted[1];
+    
+    return part1 + "...@" + part2;
+};
+console.log(protect_email("robin_singh@example.com"));
+```
+
+Which had the following result **:**
+
+```js
+"robin...@example.com"
+```
+
+It does uses more variables but also it makes it reasier to read aswel.
