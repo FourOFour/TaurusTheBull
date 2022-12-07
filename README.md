@@ -384,7 +384,7 @@ console.log(protect_email("robin_singh@example.com")); // "robin...@example.com"
 
 **My Answer**
 
-My first thought was how many words should i trim ? or how many words should it be at max on left hand side of `@`? i could go static ( 1 to 5 ) character max or divide that ( 2 or 3 ), I will just go with static one first then just refine it. **:**
+My first thought was how many words should i trim ? or how many words should it be at max on left hand side of **@**? i could go static ( 1 to 5 ) character max or divide that ( 2 or 3 ), I will just go with static one first then just refine it. **:**
 
 ```js
 function protect_email(v) {
@@ -414,6 +414,8 @@ function protect_email(v) {
         arr = v.trim().split('@');
 
         return arr[0].slice(0, arr[0].length / 2) + '...@' + arr[1];
+    } else {
+        return 'ERROR';
     }
 }
 console.log(protect_email("robin_singh@example.com"));
@@ -430,6 +432,8 @@ function protect_email(v) {
         execVal = regex.exec(v.trim());
 
         return execVal[1].slice(0, execVal[1].length / 2) + '...@' + execVal[2];
+    } else {
+        return 'ERROR';
     }
 }
 console.log(protect_email("robin_singh@example.com"));
