@@ -495,6 +495,9 @@
 
     It does uses more variables but also it makes it reasier to read aswel.
 
+    <hr>
+    <br>
+
 7. Write a JavaScript function to parameterize a string.
 
     **Test Data :**
@@ -514,7 +517,7 @@
         let regex = /[^\w -]/g,
             regex2 = /\s/g;
         
-        // capture anything we don't want with 'regex', and all white space with regex2
+        // capture anything we don't want with 'regex', and all white-space with regex2
         
         return v.trim().toLowerCase().replace(regex, '').replace(regex2, '-');
     }
@@ -548,5 +551,57 @@
     "robin-singh-from-usa"
     ```
 
+    <hr>
+    <br>
 
+8. Write a JavaScript function to capitalize the first letter of a string.
+
+    **Test Data :**
+
+    ```js
+    console.log(capitalize('js string exercises')); // "Js string exercises"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function capitalize(v) {
+        return v.charAt(0).toUpperCase() + v.slice(1);
+    }
+    console.log(capitalize('js string exercises'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "Js string exercises"
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-8.php)**:**
+
+    ```js
+    capitalize = function(str1){
+        return str1.charAt(0).toUpperCase() + str1.slice(1);
+    }        
+    console.log(capitalize('js string exercises'));    
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "Js string exercises"
+    ```
+
+    <hr>
+    <br>
 
