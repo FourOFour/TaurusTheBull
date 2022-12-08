@@ -16,460 +16,481 @@
 
 <h2 id="String"><b>String</b></h2>
 
-### **1.** Write a JavaScript function to check whether an **input** is a string or not.
+1. Write a JavaScript function to check whether an **input** is a string or not.
 
-**Test Data :**
+    **Test Data :**
 
-```js
-console.log(is_string('w3resource')); // true
-console.log(is_string([1, 2, 4, 0])); // false
-```
+    ```js
+    console.log(is_string('w3resource')); // true
+    console.log(is_string([1, 2, 4, 0])); // false
+    ```
 
-<br>
+    <br>
 
-**My Answer**
+    <details><summary><b>My Answer</b></summary>
 
-My first thought is to go with **:**
+    My first thought is to go with **:**
 
-```js
-function is_string(v) {
-    return typeof v == "string";
-    /*
-    *   Since 'typeof v' only returns a string value it would just do ===  
-    */
-}
-console.log(is_string('w3resource'));
-console.log(is_string([1, 2, 4, 0]));
-```
+    ```js
+    function is_string(v) {
+        return typeof v == "string";
+        /*
+        *   Since 'typeof v' only returns a string value it would just do ===  
+        */
+    }
+    console.log(is_string('w3resource'));
+    console.log(is_string([1, 2, 4, 0]));
+    ```
 
-Which had the following result **:**
+    Which had the following result **:**
 
-```js
-true
-false
-```
+    ```js
+    true
+    false
+    ```
 
-<br>
+    </details>
 
-**Provided Solution**
+    <br>
 
-But in the [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-1.php) page it used the following method **:**
+    <details><summary><b>Provided Solution</b></summary>
 
-```js
-is_string = function(input) {
-    if (Object.prototype.toString.call(input) === '[object String]')
-        return true;
-    else
-        return false;   
-};
-console.log(is_string('w3resource'));
-console.log(is_string([1, 2, 4, 0]));
-```
-Which had the following result **:**
+    But in the [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-1.php) page it used the following method **:**
 
-```js
-true
-false
-```
+    ```js
+    is_string = function(input) {
+        if (Object.prototype.toString.call(input) === '[object String]')
+            return true;
+        else
+            return false;   
+    };
+    console.log(is_string('w3resource'));
+    console.log(is_string([1, 2, 4, 0]));
+    ```
+    Which had the following result **:**
 
-Which is smart method, because it can catches strings that was created by `new String()`, But i would say why make `Object` out of **Primitive Value** and also we are getting a **value** from **input**, So i dont think we are ever going to run into that problem.
+    ```js
+    true
+    false
+    ```
 
-You can test the following code for both method to understand this part **:**
+    Which is smart method, because it can catches strings that was created by `new String()`, But i would say why make `Object` out of **Primitive Value** and also we are getting a **value** from **input**, So i dont think we are ever going to run into that problem.
 
-```js
-console.log(is_string(new String('Why?')));
-```
+    You can test the following code for both method to understand this part **:**
 
-<hr>
-<br>
+    ```js
+    console.log(is_string(new String('Why?')));
+    ```
 
-### **2.** Write a JavaScript function to check whether a string is **blank** or not.
+    </details>
 
-**Test Data :**
+    <hr>
+    <br>
 
-```js
-console.log(is_Blank('')); // true
-console.log(is_Blank('abc')); // false
-```
+2. Write a JavaScript function to check whether a string is **blank** or not.
 
-<br>
+    **Test Data :**
 
-**My Answer**
+    ```js
+    console.log(is_Blank('')); // true
+    console.log(is_Blank('abc')); // false
+    ```
 
-My first thought is to go with **:**
+    <br>
 
-```js
-function is_Blank(v) {
-    return v.length == 0;
-    /*
-    *   If v.length is undefined still would get false
-    *   If not both side will be number so it would just do ===
-    */
-}
-console.log(is_Blank(''));
-console.log(is_Blank('abc'));
-```
+    <details><summary><b>My Answer</b></summary>
 
-Which had the following result **:**
+    My first thought is to go with **:**
 
-```js
-true
-false
-```
-
-Have in mind im not checking for **type** of the `v`, just trusting that the question will always provide string as argument.
-
-If i wanted to make sure `v` is string it would go as the following code **:**
-
-```js
-function is_Blank(v) {
-    if (typeof v == 'string') 
+    ```js
+    function is_Blank(v) {
         return v.length == 0;
-    else 
-        console.log('WHY?!'); // handling the wrong type
-}
-console.log(is_Blank(''));
-console.log(is_Blank('abc'));
-```
-
-<br>
-
-**Provided Solution**
-
-[**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-2.php)**:**
-
-```js
-is_Blank =  function(input) {
-    if (input.length === 0)
-        return true;
-    else 
-        return false;
-}
-console.log(is_Blank(''));
-console.log(is_Blank('abc'));
-```
-
-Which had the following result **:**
-
-```js
-true
-false
-```
-
-<hr>
-<br>
-
-### **3.** Write a JavaScript function to split a string and convert it into an array of words.
-
-**Test Data :**
-
-```js
-console.log(string_to_array("Robin Singh")); // ["Robin", "Singh"]
-```
-
-<br>
-
-**My Answer**
-
-My first thought is to go with **:**
-
-```js
-function string_to_array(v) {
-    return v.split(' ');
-}
-console.log(string_to_array("Robin Singh"));
-```
-
-Which had the following result **:**
-
-```js
-['Robin', 'Singh']
-```
-
-But it did come to my mind since i am spliting a string base on `white-space` maybe i should make sure there is nothing at the end or start of the string aswel.
-
-It went as the following code **:**
-
-```js
-function string_to_array(v) {
-    return v.trim().split(' ');
-}
-console.log(string_to_array("  Robin Singh "));
-```
-
-Also lets do extra version with `RegExp` while i am at it.
-
-```js
-function string_to_array(v) {
-    return v.replace(/^\s*|\s*$/g, '').split(/\s/);
-}
-console.log(string_to_array("  Robin Singh "));
-```
-
-Which both had the following result **:**
-
-```js
-['Robin', 'Singh']
-```
-
-<br>
-
-**Provided Solution**
-
-[**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-3.php)**:**
-
-```js
-string_to_array = function (str) {
-     return str.trim().split(" ");
-};
-console.log(string_to_array("Robin Singh"));
-```
-
-Which had the following result **:**
-
-```js
-["Robin","Singh"]
-```
-
-<hr>
-<br>
-
-### **4.** Write a JavaScript function to extract a specified number of characters from a string.
-
-**Test Data :**
-
-```js
-console.log(truncate_string("Robin Singh",4)); // "Robi"
-```
-
-<br>
-
-**My Answer**
-
-My first thought is to go with **:**
-
-```js
-function truncate_string(v, i) {
-    return v.substring(0, i);
-}
-console.log(truncate_string("Robin Singh",4));
-```
-
-Or
-
-```js
-function truncate_string(v, i) {
-    return v.slice(0, i);
-}
-console.log(truncate_string("Robin Singh",4));
-```
-
-Which both had the following result **:**
-
-```js
-"Robi"
-```
-
-And if we want to do it with `RegExp`, it would go as the following code **:**
-
-```js
-function truncate_string(v, i) {
-    return v.match('^(.|\n){' + i + '}')[0]; // (any character except newline Or newline) 'i' times
-}
-console.log(truncate_string("Robin Singh",4));
-```
-
-Which also had the following result **:**
-
-```js
-"Robi"
-```
-
-<br>
-
-**Provided Solution**
-
-[**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-4.php)**:**
-
-```js
-truncate_string = function (str1, length) {
-    if ((str1.constructor === String) && (length>0)) {
-        return str1.slice(0, length);
+        /*
+        *   If v.length is undefined still would get false
+        *   If not both side will be number so it would just do ===
+        */
     }
-};
-console.log(truncate_string("Robin Singh",4));
-```
+    console.log(is_Blank(''));
+    console.log(is_Blank('abc'));
+    ```
 
-Which had the following result **:**
+    Which had the following result **:**
 
-```js
-"Robi"
-```
+    ```js
+    true
+    false
+    ```
 
-Got to say, nice way to check the type `str1.constructor === String`, Base on the question it self i am not sure about `length>0` to not return empty string.
+    Have in mind im not checking for **type** of the `v`, just trusting that the question will always provide string as argument.
 
+    If i wanted to make sure `v` is string it would go as the following code **:**
 
-<hr>
-<br>
-
-### **5.** Write a JavaScript function to convert a string in abbreviated form.
-
-**Test Data :**
-
-```js
-console.log(abbrev_name("Robin Singh")); // "Robin S."
-```
-
-<br>
-
-**My Answer**
-
-My first thought was what is the proper way to do **abbreviated form**, With a some help from google and the expected answer, I went with the following code **:**
-
-```js
-function abbrev_name(v) {
-    let arr = v.trim().split(' ');
-
-    if (arr.length > 1)
-        return arr[0] + ' ' + arr[1].charAt(0) + '.';
-    else
-        return arr[0];
-}
-console.log(abbrev_name("Robin Singh"));
-console.log(abbrev_name("Robin "));
-```
-
-Which had the following result **:**
-
-```js
-"Robin S."
-"Robin"
-```
-
-<br>
-
-**Provided Solution**
-
-[**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-5.php)**:**
-
-```js
-abbrev_name = function (str1) {
-    var split_names = str1.trim().split(" ");
-    if (split_names.length > 1) {
-        return (split_names[0] + " " + split_names[1].charAt(0) + ".");
+    ```js
+    function is_Blank(v) {
+        if (typeof v == 'string') 
+            return v.length == 0;
+        else 
+            console.log('WHY?!'); // handling the wrong type
     }
-    return split_names[0];
-};
-console.log(abbrev_name("Robin Singh"));
-```
+    console.log(is_Blank(''));
+    console.log(is_Blank('abc'));
+    ```
 
-Which had the following result **:**
+    </details>
 
-```js
-"Robin S."
-```
+    <br>
 
-<hr>
-<br>
+    <details><summary><b>Provided Solution</b></summary>
 
-### **6.** Write a JavaScript function to hide email addresses to protect from unauthorized user.
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-2.php)**:**
 
-**Test Data :**
-
-```js
-console.log(protect_email("robin_singh@example.com")); // "robin...@example.com"
-```
-
-<br>
-
-**My Answer**
-
-My first thought was how many words should i trim ? or how many words should it be at max on left hand side of **@**? i could go static ( 1 to 5 ) character max or divide that ( 2 or 3 ), I will just go with static one first then just refine it. **:**
-
-```js
-function protect_email(v) {
-    var arr;
-
-    arr = v.split('@');
-
-    return arr[0].slice(0, arr[0].length > 5 ? 5 : 1) + '...' + '@' + arr[1];
-}
-console.log(protect_email("robin_singh@example.com"));
-```
-
-Which had the following result **:**
-
-```js
-"robin...@example.com"
-```
-
-Now lets refine it a bit **:**
-
-```js
-function protect_email(v) {
-    const regex = /^.+@.+$/; // make sure it's email (simple one ofc)
-    var arr;
-
-    if (regex.test(v)) {
-        arr = v.trim().split('@');
-
-        return arr[0].slice(0, arr[0].length / 2) + '...@' + arr[1];
-    } else {
-        return 'ERROR';
+    ```js
+    is_Blank =  function(input) {
+        if (input.length === 0)
+            return true;
+        else 
+            return false;
     }
-}
-console.log(protect_email("robin_singh@example.com"));
-```
+    console.log(is_Blank(''));
+    console.log(is_Blank('abc'));
+    ```
 
-How about a RegExp version **:**
+    Which had the following result **:**
 
-```js
-function protect_email(v) {
-    const regex = /^(.+)@(.+)$/; // Now we use capturing groups
-    var execVal;
+    ```js
+    true
+    false
+    ```
 
-    if (regex.test(v)) {
-        execVal = regex.exec(v.trim());
+    </details>
 
-        return execVal[1].slice(0, execVal[1].length / 2) + '...@' + execVal[2];
-    } else {
-        return 'ERROR';
+    <hr>
+    <br>
+
+3. Write a JavaScript function to split a string and convert it into an array of words.
+
+    **Test Data :**
+
+    ```js
+    console.log(string_to_array("Robin Singh")); // ["Robin", "Singh"]
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought is to go with **:**
+
+    ```js
+    function string_to_array(v) {
+        return v.split(' ');
     }
-}
-console.log(protect_email("robin_singh@example.com"));
-```
+    console.log(string_to_array("Robin Singh"));
+    ```
 
-Which both had the following result **:**
+    Which had the following result **:**
 
-```js
-"robin...@example.com"
-```
+    ```js
+    ['Robin', 'Singh']
+    ```
 
-<br>
+    But it did come to my mind since i am spliting a string base on `white-space` maybe i should make sure there is nothing at the end or start of the string aswel.
 
-**Provided Solution**
+    It went as the following code **:**
 
-[**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-6.php)**:**
+    ```js
+    function string_to_array(v) {
+        return v.trim().split(' ');
+    }
+    console.log(string_to_array("  Robin Singh "));
+    ```
 
-```js
-protect_email = function (user_email) {
-    var avg, splitted, part1, part2;
-    
-    splitted = user_email.split("@");
-    part1 = splitted[0];
-    avg = part1.length / 2;
-    part1 = part1.substring(0, (part1.length - avg));
-    part2 = splitted[1];
-    
-    return part1 + "...@" + part2;
-};
-console.log(protect_email("robin_singh@example.com"));
-```
+    Also lets do extra version with `RegExp` while i am at it.
 
-Which had the following result **:**
+    ```js
+    function string_to_array(v) {
+        return v.replace(/^\s*|\s*$/g, '').split(/\s/);
+    }
+    console.log(string_to_array("  Robin Singh "));
+    ```
 
-```js
-"robin...@example.com"
-```
+    Which both had the following result **:**
 
-It does uses more variables but also it makes it reasier to read aswel.
+    ```js
+    ['Robin', 'Singh']
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-3.php)**:**
+
+    ```js
+    string_to_array = function (str) {
+        return str.trim().split(" ");
+    };
+    console.log(string_to_array("Robin Singh"));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    ["Robin","Singh"]
+    ```
+
+    </details>
+
+    <hr>
+    <br>
+
+4. Write a JavaScript function to extract a specified number of characters from a string.
+
+    **Test Data :**
+
+    ```js
+    console.log(truncate_string("Robin Singh",4)); // "Robi"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought is to go with **:**
+
+    ```js
+    function truncate_string(v, i) {
+        return v.substring(0, i);
+    }
+    console.log(truncate_string("Robin Singh",4));
+    ```
+
+    Or
+
+    ```js
+    function truncate_string(v, i) {
+        return v.slice(0, i);
+    }
+    console.log(truncate_string("Robin Singh",4));
+    ```
+
+    Which both had the following result **:**
+
+    ```js
+    "Robi"
+    ```
+
+    And if we want to do it with `RegExp`, it would go as the following code **:**
+
+    ```js
+    function truncate_string(v, i) {
+        return v.match('^(.|\n){' + i + '}')[0]; // (any character except newline Or newline) 'i' times
+    }
+    console.log(truncate_string("Robin Singh",4));
+    ```
+
+    Which also had the following result **:**
+
+    ```js
+    "Robi"
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-4.php)**:**
+
+    ```js
+    truncate_string = function (str1, length) {
+        if ((str1.constructor === String) && (length>0)) {
+            return str1.slice(0, length);
+        }
+    };
+    console.log(truncate_string("Robin Singh",4));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "Robi"
+    ```
+
+    Got to say, nice way to check the type `str1.constructor === String`, Base on the question it self i am not sure about `length>0` to not return empty string.
+
+    </details>
+
+    <hr>
+    <br>
+
+5. Write a JavaScript function to convert a string in abbreviated form.
+
+    **Test Data :**
+
+    ```js
+    console.log(abbrev_name("Robin Singh")); // "Robin S."
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was what is the proper way to do **abbreviated form**, With a some help from google and the expected answer, I went with the following code **:**
+
+    ```js
+    function abbrev_name(v) {
+        let arr = v.trim().split(' ');
+
+        if (arr.length > 1)
+            return arr[0] + ' ' + arr[1].charAt(0) + '.';
+        else
+            return arr[0];
+    }
+    console.log(abbrev_name("Robin Singh"));
+    console.log(abbrev_name("Robin "));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "Robin S."
+    "Robin"
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-5.php)**:**
+
+    ```js
+    abbrev_name = function (str1) {
+        var split_names = str1.trim().split(" ");
+        if (split_names.length > 1) {
+            return (split_names[0] + " " + split_names[1].charAt(0) + ".");
+        }
+        return split_names[0];
+    };
+    console.log(abbrev_name("Robin Singh"));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "Robin S."
+    ```
+
+    </details>
+
+    <hr>
+    <br>
+
+6. Write a JavaScript function to hide email addresses to protect from unauthorized user.
+
+    **Test Data :**
+
+    ```js
+    console.log(protect_email("robin_singh@example.com")); // "robin...@example.com"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was how many words should i trim ? or how many words should it be at max on left hand side of **@**? i could go static ( 1 to 5 ) character max or divide that ( 2 or 3 ), I will just go with static one first then just refine it. **:**
+
+    ```js
+    function protect_email(v) {
+        var arr;
+
+        arr = v.split('@');
+
+        return arr[0].slice(0, arr[0].length > 5 ? 5 : 1) + '...' + '@' + arr[1];
+    }
+    console.log(protect_email("robin_singh@example.com"));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "robin...@example.com"
+    ```
+
+    Now lets refine it a bit **:**
+
+    ```js
+    function protect_email(v) {
+        const regex = /^.+@.+$/; // make sure it's email (simple one ofc)
+        var arr;
+
+        if (regex.test(v)) {
+            arr = v.trim().split('@');
+
+            return arr[0].slice(0, arr[0].length / 2) + '...@' + arr[1];
+        } else {
+            return 'ERROR';
+        }
+    }
+    console.log(protect_email("robin_singh@example.com"));
+    ```
+
+    How about a RegExp version **:**
+
+    ```js
+    function protect_email(v) {
+        const regex = /^(.+)@(.+)$/; // Now we use capturing groups
+        var execVal;
+
+        if (regex.test(v)) {
+            execVal = regex.exec(v.trim());
+
+            return execVal[1].slice(0, execVal[1].length / 2) + '...@' + execVal[2];
+        } else {
+            return 'ERROR';
+        }
+    }
+    console.log(protect_email("robin_singh@example.com"));
+    ```
+
+    Which both had the following result **:**
+
+    ```js
+    "robin...@example.com"
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-6.php)**:**
+
+    ```js
+    protect_email = function (user_email) {
+        var avg, splitted, part1, part2;
+        
+        splitted = user_email.split("@");
+        part1 = splitted[0];
+        avg = part1.length / 2;
+        part1 = part1.substring(0, (part1.length - avg));
+        part2 = splitted[1];
+        
+        return part1 + "...@" + part2;
+    };
+    console.log(protect_email("robin_singh@example.com"));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "robin...@example.com"
+    ```
+
+    It does uses more variables but also it makes it reasier to read aswel.
