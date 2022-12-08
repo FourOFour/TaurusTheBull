@@ -1238,3 +1238,86 @@
 
     <hr>
     <br>
+
+16. Write a JavaScript function to truncates a string if it is longer than the specified number of characters. Truncated strings will end with a translatable ellipsis sequence ("…") (by default) or specified characters.
+
+    **Test Data :**
+
+    ```js
+    console.log(text_truncate('We are doing JS string exercises.'));
+    console.log(text_truncate('We are doing JS string exercises.',19));
+    console.log(text_truncate('We are doing JS string exercises.',15,'!!'));
+    ```
+
+    ```js
+    "We are doing JS string exercises."
+    "We are doing JS ..."
+    "We are doing !!"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function text_truncate(v, i, p='...') {
+        if (i !== undefined) {
+            return v.substring(0, i - p.length) + p;
+        } else {
+            return v;
+        }
+    }
+    console.log(text_truncate('We are doing JS string exercises.'))
+    console.log(text_truncate('We are doing JS string exercises.',19))
+    console.log(text_truncate('We are doing JS string exercises.',15,'!!'))
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "We are doing JS string exercises."
+    "We are doing JS ..."
+    "We are doing !!"
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-16.php)**:**
+
+    ```js
+    text_truncate = function(str, length, ending) {
+        if (length == null) {
+            length = 100;
+        }
+        if (ending == null) {
+            ending = '...';
+        }
+        if (str.length > length) {
+            return str.substring(0, length - ending.length) + ending;
+        } else {
+            return str;
+        }
+    };
+    console.log(text_truncate('We are doing JS string exercises.'))
+    console.log(text_truncate('We are doing JS string exercises.',19))
+    console.log(text_truncate('We are doing JS string exercises.',15,'!!'))
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "We are doing JS string exercises."
+    "We are doing JS ..."
+    "We are doing !!"
+    ```
+
+    </details>
+
+    <hr>
+    <br>
