@@ -516,8 +516,8 @@
 
     ```js
     function string_parameterize(v) {
-        let regex = /[^\w -]/g,
-            regex2 = /\s/g;
+        const regex = /[^\w -]/g;
+        const regex2 = /\s/g;
         
         // capture anything we don't want with 'regex', and all white-space with regex2
         
@@ -627,7 +627,7 @@
 
     ```js
     function capitalize_Words(v) {
-        let regex = /\b\w+\b/g;
+        const regex = /\b\w+\b/g;
 
         return v.replace(regex, function(match) {
             return match.charAt(0).toUpperCase() + match.slice(1);
@@ -688,7 +688,7 @@
 
     ```js
     function swapcase(v) {
-        let regex = /([a-z]+)|([A-Z]+)/g; // useing capturing group to find out if its lowercase or uppercaser
+        const regex = /([a-z]+)|([A-Z]+)/g; // using capturing group to find out if its lowercase or uppercaser
 
         return v.replace(regex, function(match, p1) {
             // if p1 is 'undefined' its uppercase (means p2 is not), otherwise its lowercase
@@ -733,6 +733,86 @@
     ```
 
     It took me a bit to understand when using capturing groups and it is involved `Or` condition, one of the groups will be undefined in passed in function. they won't lose their spot or `index`, they will be just undefined.
+
+    </details>
+
+    <hr>
+    <br>
+
+11. Write a JavaScript function to convert a string into camel case.
+
+    **Test Data :**
+
+    ```js
+    console.log(camelize("JavaScript Exercises")); // "JavaScriptExercises"
+    console.log(camelize("JavaScript exercises")); // "JavaScriptExercises"
+    console.log(camelize("JavaScriptExercises")); // "JavaScriptExercises"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function camelize(v) {
+        const regex = /\b\w+\b/g;
+        var arr = v.match(regex);
+
+        // return arr.map(function(item) {
+        //     return item.charAt(0).toUpperCase() + item.slice(1);
+        // }, '').join('');
+        
+        // OR 
+
+        return arr.reduce(function(sum, item) {
+            return sum + item.charAt(0).toUpperCase() + item.slice(1);
+        }, '');
+    }
+    console.log(camelize("JavaScript Exercises"));
+    console.log(camelize("JavaScript exercises"));
+    console.log(camelize("JavaScriptExercises"));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "JavaScriptExercises"
+    "JavaScriptExercises"
+    "JavaScriptExercises"
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-11.php)**:**
+
+    ```js
+    camelize = function camelize(str) {
+        return str.replace(/\W+(.)/g, function(match, chr)
+        {
+            return chr.toUpperCase();
+        });
+    }
+
+    console.log(camelize("JavaScript Exercises"));
+    console.log(camelize("JavaScript exercises"));
+    console.log(camelize("JavaScriptExercises"));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "JavaScriptExercises"
+    "JavaScriptExercises"
+    "JavaScriptExercises"
+    ```
+
+    I guess main way to handle this was to capture the words seperately.
 
     </details>
 
