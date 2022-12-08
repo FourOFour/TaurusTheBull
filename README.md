@@ -495,6 +495,8 @@
 
     It does uses more variables but also it makes it reasier to read aswel.
 
+    </details>
+
     <hr>
     <br>
 
@@ -551,6 +553,8 @@
     "robin-singh-from-usa"
     ```
 
+    </details>
+
     <hr>
     <br>
 
@@ -602,6 +606,7 @@
     "Js string exercises"
     ```
 
+    </details>
+
     <hr>
     <br>
-
