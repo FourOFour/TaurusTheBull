@@ -494,3 +494,59 @@
     ```
 
     It does uses more variables but also it makes it reasier to read aswel.
+
+7. Write a JavaScript function to parameterize a string.
+
+    **Test Data :**
+
+    ```js
+    console.log(string_parameterize("Robin Singh from USA.")); // "robin-singh-from-usa"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was, okay lets google parameterize, then rest was as following **:**
+
+    ```js
+    function string_parameterize(v) {
+        let regex = /[^\w -]/g,
+            regex2 = /\s/g;
+        
+        // capture anything we don't want with 'regex', and all white space with regex2
+        
+        return v.trim().toLowerCase().replace(regex, '').replace(regex2, '-');
+    }
+    console.log(string_parameterize("Robin Singh from USA."));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "robin-singh-from-usa"
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-7.php)**:**
+
+    ```js
+    string_parameterize = function (str1) {
+        return str1.trim().toLowerCase().replace(/[^a-zA-Z0-9 -]/, "").replace(/\s/g, "-");
+    };
+    console.log(string_parameterize("Robin Singh from USA."));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "robin-singh-from-usa"
+    ```
+
+
+
