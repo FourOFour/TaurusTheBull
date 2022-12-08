@@ -818,3 +818,107 @@
 
     <hr>
     <br>
+
+12. Write a JavaScript function to uncamelize a string.
+
+    **Test Data :**
+
+    ```js
+    console.log(uncamelize('helloWorld')); // "hello world"
+    console.log(uncamelize('helloWorld','-')); // "hello-world"
+    console.log(uncamelize('helloWorld','_')); // "hello_world"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was okay we got to seperate by capital words and accept second argument to replace the white-space **:**
+
+    ```js
+    function uncamelize(v, p) {
+        const regex = /[A-Z]?[a-z]+[^A-Z]/g;
+        let arr = v.trim().match(regex);
+
+        return arr.reduce(function(sum, item) {
+            // We need to be careful not to place seperator (p) on first word
+            if (sum.length > 0) {
+                sum += p ? p : ' ';
+            }
+
+            return sum + item.toLowerCase();
+        }, '');
+    }
+    console.log(uncamelize('helloWorld'));
+    console.log(uncamelize('helloWorld','-'));
+    console.log(uncamelize('helloWorld','_'));
+    ```
+
+    And second way is to check if First letter is capital or not.
+
+    ```js
+    function uncamelize(v, p) {
+        const regex = /^[A-Z]/; 
+        const regex2 = /[A-Z]/;
+
+        // Check if the first character is capital
+        if (regex.test(v)) {
+            v = v.charAt(0).toLowerCase() + v.slice(1);
+        }
+
+        return v.replace(regex2, function(match) {
+            return (p ? p : ' ') + match.toLowerCase();
+        });
+    }
+    console.log(uncamelize('helloWorld'));
+    console.log(uncamelize('helloWorld','-'));
+    console.log(uncamelize('helloWorld','_'));
+    ```
+
+    Which both had the following result **:**
+
+    ```js
+    "hello world"
+    "hello-world"
+    "hello_world"
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-12.php)**:**
+
+    ```js
+    function uncamelize(str, separator) {
+        // Assume default separator is a single space.
+        if(typeof(separator) == "undefined") {
+            separator = " ";
+        }
+        // Replace all capital letters by separator followed by lowercase one
+        var str = str.replace(/[A-Z]/g, function (letter) 
+        {
+            return separator + letter.toLowerCase();
+        });
+        // Remove first separator
+        return str.replace("/^" + separator + "/", '');
+    }
+    console.log(uncamelize('helloWorld'));
+    console.log(uncamelize('helloWorld','-'));
+    console.log(uncamelize('helloWorld','_'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "hello world"
+    "hello-world"
+    "hello_world"
+    ```
+
+    </details>
+
+    <hr>
+    <br>
