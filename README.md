@@ -922,3 +922,75 @@
 
     <hr>
     <br>
+
+13. Write a JavaScript function to concatenates a given string n times (default is 1).
+
+    **Test Data :**
+
+    ```js
+    console.log(repeat('Ha!')); // "Ha!"
+    console.log(repeat('Ha!',2)); // "Ha!Ha!"
+    console.log(repeat('Ha!',3)); // "Ha!Ha!Ha!"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function repeat(v, n=1) {
+        var txt = '';
+
+        for(var i=0; i < n; i++) {
+            txt += v;
+        }
+
+        return txt;
+    }
+    console.log(repeat('Ha!'));
+    console.log(repeat('Ha!',2));
+    console.log(repeat('Ha!',3));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "Ha!"
+    "Ha!Ha!"
+    "Ha!Ha!Ha!"
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-13.php)**:**
+
+    ```js
+    repeat = function repeat(str, count) {
+        if(typeof(count) == "undefined") {
+            count =1;
+        }
+        return count < 1 ? '' : new Array(count + 1).join(str);
+    }
+    console.log(repeat('Ha!'));
+    console.log(repeat('Ha!',2));
+    console.log(repeat('Ha!',3));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "Ha!"
+    "Ha!Ha!"
+    "Ha!Ha!Ha!"
+    ```
+
+    </details>
+
+    <hr>
+    <br>
