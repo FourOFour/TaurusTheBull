@@ -21,8 +21,13 @@
     **Test Data :**
 
     ```js
-    console.log(is_string('w3resource')); // true
-    console.log(is_string([1, 2, 4, 0])); // false
+    console.log(is_string('w3resource'));
+    console.log(is_string([1, 2, 4, 0]));
+    ```
+
+    ```js
+    true
+    false
     ```
 
     <br>
@@ -92,8 +97,13 @@
     **Test Data :**
 
     ```js
-    console.log(is_Blank('')); // true
-    console.log(is_Blank('abc')); // false
+    console.log(is_Blank(''));
+    console.log(is_Blank('abc'));
+    ```
+
+    ```js
+    true
+    false
     ```
 
     <br>
@@ -172,7 +182,11 @@
     **Test Data :**
 
     ```js
-    console.log(string_to_array("Robin Singh")); // ["Robin", "Singh"]
+    console.log(string_to_array("Robin Singh"));
+    ```
+
+    ```js
+    ['Robin', 'Singh']
     ```
 
     <br>
@@ -251,7 +265,11 @@
     **Test Data :**
 
     ```js
-    console.log(truncate_string("Robin Singh",4)); // "Robi"
+    console.log(truncate_string("Robin Singh",4));
+    ```
+
+    ```js
+    "Robi"
     ```
 
     <br>
@@ -332,7 +350,11 @@
     **Test Data :**
 
     ```js
-    console.log(abbrev_name("Robin Singh")); // "Robin S."
+    console.log(abbrev_name("Robin Singh"));
+    ```
+
+    ```js
+    "Robin S."
     ```
 
     <br>
@@ -396,7 +418,11 @@
     **Test Data :**
 
     ```js
-    console.log(protect_email("robin_singh@example.com")); // "robin...@example.com"
+    console.log(protect_email("robin_singh@example.com"));
+    ```
+
+    ```js
+    "robin...@example.com"
     ```
 
     <br>
@@ -505,7 +531,11 @@
     **Test Data :**
 
     ```js
-    console.log(string_parameterize("Robin Singh from USA.")); // "robin-singh-from-usa"
+    console.log(string_parameterize("Robin Singh from USA."));
+    ```
+
+    ```js
+    "robin-singh-from-usa"
     ```
 
     <br>
@@ -563,7 +593,11 @@
     **Test Data :**
 
     ```js
-    console.log(capitalize('js string exercises')); // "Js string exercises"
+    console.log(capitalize('js string exercises')); 
+    ```
+
+    ```js
+    "Js string exercises"
     ```
 
     <br>
@@ -616,7 +650,11 @@
     **Test Data :**
 
     ```js
-    console.log(capitalize_Words('js string exercises')); // "Js String Exercises"
+    console.log(capitalize_Words('js string exercises'));
+    ```
+
+    ```js
+    "Js String Exercises"
     ```
 
     <br>
@@ -677,7 +715,11 @@
     **Test Data :**
 
     ```js
-    console.log(swapcase('AaBbc')); // "aAbBC"
+    console.log(swapcase('AaBbc'));
+    ```
+
+    ```js
+    "aAbBC"
     ```
 
     <br>
@@ -744,9 +786,15 @@
     **Test Data :**
 
     ```js
-    console.log(camelize("JavaScript Exercises")); // "JavaScriptExercises"
-    console.log(camelize("JavaScript exercises")); // "JavaScriptExercises"
-    console.log(camelize("JavaScriptExercises")); // "JavaScriptExercises"
+    console.log(camelize("JavaScript Exercises"));
+    console.log(camelize("JavaScript exercises"));
+    console.log(camelize("JavaScriptExercises"));
+    ```
+
+    ```js
+    "JavaScriptExercises"
+    "JavaScriptExercises"
+    "JavaScriptExercises"
     ```
 
     <br>
@@ -824,9 +872,15 @@
     **Test Data :**
 
     ```js
-    console.log(uncamelize('helloWorld')); // "hello world"
-    console.log(uncamelize('helloWorld','-')); // "hello-world"
-    console.log(uncamelize('helloWorld','_')); // "hello_world"
+    console.log(uncamelize('helloWorld'));
+    console.log(uncamelize('helloWorld','-'));
+    console.log(uncamelize('helloWorld','_'));
+    ```
+
+    ```js
+    "hello world"
+    "hello-world"
+    "hello_world"
     ```
 
     <br>
@@ -928,9 +982,15 @@
     **Test Data :**
 
     ```js
-    console.log(repeat('Ha!')); // "Ha!"
-    console.log(repeat('Ha!',2)); // "Ha!Ha!"
-    console.log(repeat('Ha!',3)); // "Ha!Ha!Ha!"
+    console.log(repeat('Ha!'));
+    console.log(repeat('Ha!',2));
+    console.log(repeat('Ha!',3));
+    ```
+
+    ```js
+    "Ha!"
+    "Ha!Ha!"
+    "Ha!Ha!Ha!"
     ```
 
     <br>
@@ -989,6 +1049,190 @@
     "Ha!Ha!"
     "Ha!Ha!Ha!"
     ```
+
+    </details>
+
+    <hr>
+    <br>
+
+14. Write a JavaScript function to insert a string within a string at a particular position (default is 1).
+
+    **Test Data :**
+
+    ```js
+    console.log(insert('We are doing some exercises.'));
+    console.log(insert('We are doing some exercises.','JavaScript '));
+    console.log(insert('We are doing some exercises.','JavaScript ',18));
+    ```
+
+    ```js
+    "We are doing some exercises."
+    "JavaScript We are doing some exercises."
+    "We are doing some JavaScript exercises."
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function insert(v, v2, p=0) {
+        return v.substring(0, p) + (v2 ? v2 : '') + v.slice(p);
+    }
+    console.log(insert('We are doing some exercises.'));
+    console.log(insert('We are doing some exercises.','JavaScript '));
+    console.log(insert('We are doing some exercises.','JavaScript ',18));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "We are doing some exercises."
+    "JavaScript We are doing some exercises."
+    "We are doing some JavaScript exercises."
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-14.php)**:**
+
+    ```js
+    insert = function insert(main_string, ins_string, pos) {
+        if(typeof(pos) == "undefined") {
+            pos = 0;
+        }
+        if(typeof(ins_string) == "undefined") {
+            ins_string = '';
+        }
+        return main_string.slice(0, pos) + ins_string + main_string.slice(pos);
+    }
+    console.log(insert('We are doing some exercises.'));
+    console.log(insert('We are doing some exercises.','JavaScript '));
+    console.log(insert('We are doing some exercises.','JavaScript ',18));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "We are doing some exercises."
+    "JavaScript We are doing some exercises."
+    "We are doing some JavaScript exercises."
+    ```
+
+    </details>
+
+    <hr>
+    <br>
+
+15. Write a JavaScript function to humanized number (Formats a number to a human-readable string.) with the correct suffix such as 1st, 2nd, 3rd or 4th.
+
+    **Test Data :**
+
+    ```js
+    console.log(humanize_format());
+    console.log(humanize_format(1));
+    console.log(humanize_format(8));
+    console.log(humanize_format(301));
+    console.log(humanize_format(402));
+    ```
+
+    ```js
+    "1st"
+    "8th"
+    "301st"
+    "402nd"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function humanize_format(num) {
+        if (num !== undefined) {
+            let str = num.toString(10),
+                end;
+
+            switch (str.charAt(str.length-1)) {
+                case '1':
+                    end = 'st';
+                    break;
+                case '2':
+                    end = 'nd';
+                    break;
+                case '3':
+                    end = 'rd';
+                    break;
+                default:
+                    end = 'th';
+                    break;
+            }
+
+            return str + end;
+        }
+    }
+    console.log(humanize_format());
+    console.log(humanize_format(1));
+    console.log(humanize_format(8));
+    console.log(humanize_format(301));
+    console.log(humanize_format(402));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "1st"
+    "8th"
+    "301st"
+    "402nd"
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-15.php)**:**
+
+    ```js
+    humanize_format = function humanize(num) {
+        if(typeof(num) == "undefined") return;
+        if(num % 100 >= 11 && num % 100 <= 13)
+            return num + "th";
+            
+            switch(num % 10) {
+                case 1: return num + "st";
+                case 2: return num + "nd";
+                case 3: return num + "rd";
+            }
+        return num + "th";
+    }
+    console.log(humanize_format());
+    console.log(humanize_format(1));
+    console.log(humanize_format(8));
+    console.log(humanize_format(301));
+    console.log(humanize_format(402));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "1st"
+    "8th"
+    "301st"
+    "402nd"
+    ```
+
+    Got to say, i don't get it why would it use numerical methods.
 
     </details>
 
