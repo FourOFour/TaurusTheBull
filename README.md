@@ -671,3 +671,70 @@
 
     <hr>
     <br>
+
+10. Write a JavaScript function that takes a string which has lower and upper case letters as a parameter and converts upper case letters to lower case, and lower case letters to upper case.
+
+    **Test Data :**
+
+    ```js
+    console.log(swapcase('AaBbc')); // "aAbBC"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was, okay now we are talking **:**
+
+    ```js
+    function swapcase(v) {
+        let regex = /([a-z]+)|([A-Z]+)/g; // useing capturing group to find out if its lowercase or uppercaser
+
+        return v.replace(regex, function(match, p1) {
+            // if p1 is 'undefined' its uppercase (means p2 is not), otherwise its lowercase
+            /*
+            * p1 is '([a-z]+)'
+            * p2 is '([A-Z]+)'
+            * since its 'Or' condition one of them always is undefined
+            */
+            return p1 ? match.toUpperCase() : match.toLowerCase();
+        });
+    }
+    console.log(swapcase('AaBbc'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "aAbBC"
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-10.php)**:**
+
+    ```js
+    swapcase = function swapcase(str) {
+        return str.replace(/([a-z]+)|([A-Z]+)/g, function(match, chr) {
+            return chr ? match.toUpperCase() : match.toLowerCase();
+        });
+    }
+    console.log(swapcase('AaBbc'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "aAbBC"
+    ```
+
+    It took me a bit to understand when using capturing groups and it is involved `Or` condition, one of the groups will be undefined in passed in function. they won't lose their spot or `index`, they will be just undefined.
+
+    </details>
+
+    <hr>
+    <br>
