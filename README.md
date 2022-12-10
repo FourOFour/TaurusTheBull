@@ -3142,3 +3142,62 @@
 
     <hr>
     <br>
+
+42. Write a JavaScript function to uncapitalize each word in the string.
+
+    **Test Data :**
+
+    ```js
+    console.log(unCapitalizeWords('JS STRING EXERCISES'));
+    ```
+
+    ```js
+    "js string exercises"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function unCapitalizeWords(str) {
+        // return str.toLowerCase();
+        return str.replace(/\b\w\S*\b/g, match => match.toLowerCase());
+    }
+    console.log(unCapitalizeWords('JS STRING EXERCISES'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "js string exercises"
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-42.php)**:**
+
+    ```js
+    function unCapitalizeWords(str)
+    {
+        return str.replace(/\w\S*/g, function(txt){return txt.substr(0).toLowerCase();});
+    }
+    console.log(unCapitalizeWords('JS STRING EXERCISES'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "js string exercises"
+    ```
+
+    </details>
+
+    <hr>
+    <br>
