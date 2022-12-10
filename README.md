@@ -3266,3 +3266,60 @@
 
     <hr>
     <br>
+
+44. Write a JavaScript function to test whether the character at the provided (character) index is lower case.
+
+    **Test Data :**
+
+    ```js
+    console.log(isLowerCaseAt('Js STRING EXERCISES', 1));
+    ```
+
+    ```js
+    true
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function isLowerCaseAt(str, index) {
+        return str.substring(index, index+1).match(/[a-z]/) !== null;
+    }
+    console.log(isLowerCaseAt ('Js STRING EXERCISES', 1));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    true
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-44.php)**:**
+
+    ```js
+    function isLowerCaseAt(str, index) {
+        return str.charAt(index).toLowerCase() === str.charAt(index);
+    }
+    console.log(isLowerCaseAt ('Js STRING EXERCISES', 1));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    true
+    ```
+
+    </details>
+
+    <hr>
+    <br>
