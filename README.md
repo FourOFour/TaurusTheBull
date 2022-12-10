@@ -2040,3 +2040,64 @@
 
     <hr>
     <br>
+
+26. Write a JavaScript function to remove the first occurrence of a given 'search string' from a string.
+
+    **Test Data :**
+
+    ```js
+    console.log(remove_first_occurrence("The quick brown fox jumps over the lazy dog", 'the'));
+    ```
+
+    ```js
+    "The quick brown fox jumps over lazy dog"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function remove_first_occurrence(str, match) {
+        return str.replace(match, '');
+    }
+    console.log(remove_first_occurrence("The quick brown fox jumps over the lazy dog", 'the'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "The quick brown fox jumps over  lazy dog"
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-26.php)**:**
+
+    ```js
+    function remove_first_occurrence(str, searchstr)       {
+        var index = str.indexOf(searchstr);
+        if (index === -1) {
+            return str;
+        }
+        return str.slice(0, index) + str.slice(index + searchstr.length);
+    }
+    console.log(remove_first_occurrence("The quick brown fox jumps over the lazy dog", 'the'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "The quick brown fox jumps over  lazy dog"
+    ```
+
+    </details>
+
+    <hr>
+    <br>
