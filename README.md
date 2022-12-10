@@ -2396,3 +2396,176 @@
 
     <hr>
     <br>
+
+31. Write a JavaScript function to escapes special characters (&, <, >, ', ") for use in HTML.
+
+    **Test Data :**
+
+    ```js
+    console.log(escape_html('PHP & MySQL'));
+    console.log(escape_html('3 > 2'));
+    ```
+
+    ```js
+    "PHP &amp; MySQL"
+    "3 &gt; 2"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was, done before but sure... **:**
+
+    ```js
+    function escape_html(str) {
+        return str.replace(/[&<>'"]/g, function(match) {
+            switch (match) {
+                case '&':
+                    return '&amp;';
+                case '<':
+                    return '&lt;';
+                case '>':
+                    return '&gt;';
+                case '"':
+                    return '&quot;';
+                case "'":
+                    return '&apos;';
+                default:
+                    console.log("shouldn't be here");
+                    break;
+            }
+        });
+    }
+    console.log(escape_html('PHP & MySQL'));
+    console.log(escape_html('3 > 2'));
+    ```
+
+    Or **:**
+
+    ```js
+    function escape_html(str) {
+        let map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;'
+        };
+        
+        return str.replace(/[&<>"']/g, function(m) { return map[m]; });
+    }
+    console.log(escape_html('PHP & MySQL'));
+    console.log(escape_html('3 > 2'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "PHP &amp; MySQL"
+    "3 &gt; 2"
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-31.php)**:**
+
+    ```js
+    function escape_html(str) {
+        if ((str===null) || (str===''))
+            return false;
+        else
+            str = str.toString();
+        
+        var map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;'
+        };
+
+        return str.replace(/[&<>"']/g, function(m) { return map[m]; });
+    }
+    console.log(escape_html('PHP & MySQL'));
+    console.log(escape_html('3 > 2'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "PHP &amp; MySQL"
+    "3 &gt; 2"
+    ```
+
+    </details>
+
+    <hr>
+    <br>
+
+32. Write a JavaScript function to remove non-printable ASCII chars.
+
+    **Test Data :**
+
+    ```js
+    console.log(remove_non_ascii('äÄçÇéÉêPHP-MySQLöÖÐþúÚ'));
+    ```
+
+    ```js
+    "PHP-MySQL"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was , time to visit [**unicode-table.com**](https://unicode-table.com/en/) **:**
+
+    ```js
+    function remove_non_ascii(str) {
+        return str.replace(/[^\x20-\x7E]/g, '');
+    }
+    console.log(remove_non_ascii('äÄçÇéÉêPHP-MySQLöÖÐþúÚ'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "PHP-MySQL"
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-32.php)**:**
+
+    ```js
+    function remove_non_ascii(str) {
+        
+        if ((str===null) || (str===''))
+            return false;
+        else
+        str = str.toString();
+        
+        return str.replace(/[^\x20-\x7E]/g, '');
+    }
+    console.log(remove_non_ascii('äÄçÇéÉêPHP-MySQLöÖÐþúÚ'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "PHP-MySQL"
+    ```
+
+    </details>
+
+    <hr>
+    <br>
