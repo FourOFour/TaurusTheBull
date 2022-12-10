@@ -2825,3 +2825,68 @@
 
     <hr>
     <br>
+
+37. Write a JavaScript function to test case insensitive (except special Unicode characters) string comparison.
+
+    **Test Data :**
+
+    ```js
+    console.log(compare_strings('abcd', 'AbcD'));
+    console.log(compare_strings('ABCD', 'Abce'));
+    ```
+
+    ```js
+    true
+    false
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function compare_strings(str, comp) {
+        return (new RegExp('^' + comp + '$', 'i')).test(str);
+    }
+    console.log(compare_strings('abcd', 'AbcD'));
+    console.log(compare_strings('ABCD', 'Abce'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    true
+    false
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-37.php)**:**
+
+    ```js
+    function compare_strings(str1, str2)
+    {
+        var areEqual = str1.toUpperCase() === str2.toUpperCase();
+        return areEqual;
+    }
+    console.log(compare_strings('abcd', 'AbcD'));
+    console.log(compare_strings('ABCD', 'Abce'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    true
+    false
+    ```
+
+    </details>
+
+    <hr>
+    <br>
