@@ -732,7 +732,7 @@
     function swapcase(v) {
         const regex = /([a-z]+)|([A-Z]+)/g; // using capturing group to find out if its lowercase or uppercaser
 
-        return v.replace(regex, function(match, p1) {
+        return v.replace(regex, function(match, p1, p2) {
             // if p1 is 'undefined' its uppercase (means p2 is not), otherwise its lowercase
             /*
             * p1 is '([a-z]+)'
@@ -2752,6 +2752,73 @@
 
     ```js
     "PHP Exercises"
+    ```
+
+    </details>
+
+    <hr>
+    <br>
+
+36. Write a JavaScript function to create a Zerofilled value with optional +, - sign.
+
+    **Test Data :**
+
+    ```js
+    console.log(zeroFill(120, 5, '-'));
+    console.log(zeroFill(29, 4));
+    ```
+
+    ```js
+    "+00120"
+    "0029"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was maybe it want me to add a sign at the end (3rd argument was `-` in first example) and maybe it was a mistype `+` **:**
+
+    ```js
+    function zeroFill(num, fill, sign='+') {
+        return sign + num.toString().padStart(fill, '0');
+    }
+    console.log(zeroFill(120, 5, '-'));
+    console.log(zeroFill(29, 4));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "-00120"
+    "+0029"
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-36.php)**:**
+
+    ```js
+    function zeroFill(number, width, osign) {
+        var num = '' + Math.abs(number),
+            zerosw = width - num.length,
+            sign = number >= 0;
+        return (sign ? (osign ? '+' : '') : '-') +
+            Math.pow(10, Math.max(0, zerosw)).toString().substr(1) + num;
+    }
+    console.log(zeroFill(120, 5, '-'));
+    console.log(zeroFill(29, 4));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "+00120"
+    "0029"
     ```
 
     </details>
