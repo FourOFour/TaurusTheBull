@@ -3450,3 +3450,70 @@
 
     <hr>
     <br>
+
+47. Write a JavaScript function to test whether a string ends with a specified string.
+
+    **Test Data :**
+
+    ```js
+    console.log(endsWith('JS string exercises', 'exercises'));
+    ```
+
+    ```js
+    true
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function endsWith(str, suffix) {
+        return str.match(suffix + '$') !== null;
+    }
+    console.log(endsWith('JS string exercises', 'exercises'));
+    ```
+
+    Or **:**
+
+    ```js
+    function endsWith(str, suffix) {
+        return str.endsWith(suffix);
+    }
+    console.log(endsWith('JS string exercises', 'exercises'));
+    ```
+
+    Which both had the following result **:**
+
+    ```js
+    true
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-47.php)**:**
+
+    ```js
+    function endsWith(input, string) {
+        var index = input.length - string.length;
+        return index >= 0 && input.indexOf(string, index) > -1;
+    }
+    console.log(endsWith('JS string exercises', 'exercises'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    true
+    ```
+
+    </details>
+
+    <hr>
+    <br>
