@@ -2240,3 +2240,86 @@
 
     <hr>
     <br>
+
+29. Write a JavaScript function to find a word within a string.
+
+    **Test Data :**
+
+    ```js
+    console.log(search_word('The quick brown fox', 'fox'));
+    console.log(search_word('aa, bb, cc, dd, aa', 'aa'));
+    ```
+
+    ```js
+    "'fox' was found 1 times."
+    "'aa' was found 2 times."
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function search_word(str, word) {
+        var match = str.match(new RegExp('\\b' + word + '\\b', 'g')); // in case of null (0 match)
+        return "'" + word + "'" + ' was found ' + (match ? match.length : 0) + ' times.'; 
+    }
+    console.log(search_word('The quick brown fox', 'fox'));
+    console.log(search_word('aa, bb, cc, dd, aa', 'aa'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "'fox' was found 1 times."
+    "'aa' was found 2 times."
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-29.php)**:**
+
+    ```js
+    function search_word(text, word){
+        var x = 0, y=0;
+    
+        for (i=0;i< text.length;i++)
+            {
+            if(text[i] == word[0])
+                {
+                for(j=i;j< i+word.length;j++)
+                {
+                    if(text[j]==word[j-i])
+                    {
+                        y++;
+                    }
+                    if (y==word.length){
+                        x++;
+                    }
+                }
+                y=0;
+            }
+        }
+        return "'"+word+"' was found "+x+" times.";
+    }
+    console.log(search_word('The quick brown fox', 'fox'));
+    console.log(search_word('aa, bb, cc, dd, aa', 'aa'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "'fox' was found 1 times."
+    "'aa' was found 2 times."
+    ```
+
+    </details>
+
+    <hr>
+    <br>
