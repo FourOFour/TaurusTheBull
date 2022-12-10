@@ -3209,3 +3209,60 @@
 
     <hr>
     <br>
+
+43. Write a JavaScript function to test whether the character at the provided (character) index is upper case.
+
+    **Test Data :**
+
+    ```js
+    console.log(isUpperCaseAt('Js STRING EXERCISES', 1));
+    ```
+
+    ```js
+    false
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function isUpperCaseAt(str, index) {
+        return str.slice(index,index+1).match(/[A-Z]/) !== null;
+    }
+    console.log(isUpperCaseAt('Js STRING EXERCISES', 1));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    false
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-43.php)**:**
+
+    ```js
+    function isUpperCaseAt(str, index) {
+        return str.charAt(index).toUpperCase() === str.charAt(index);
+    }
+    console.log(isUpperCaseAt('Js STRING EXERCISES', 1));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    false
+    ```
+
+    </details>
+
+    <hr>
+    <br>
