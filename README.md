@@ -1863,3 +1863,70 @@
 
     <hr>
     <br>
+
+24. Write a JavaScript function to truncate a string to a certain number of words.
+
+    **Test Data :**
+
+    ```js
+    console.log(truncate('The quick brown fox jumps over the lazy dog', 4));
+    ```
+
+    ```js
+    "The quick brown fox"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function truncate(str, count) {
+        return str.split(' ').slice(0, count).join(' ');
+    }
+    console.log(truncate('The quick brown fox jumps over the lazy dog', 4));
+    ```
+
+    And `RegExp` version **:**
+
+    ```js
+    function truncate(str, count) {
+        const regex = /\b\w+\b/g;
+        return str.match(regex).slice(0, count).join(' ');
+    }
+    console.log(truncate('The quick brown fox jumps over the lazy dog', 4));
+    ```
+
+    Which both had the following result **:**
+
+    ```js
+    "The quick brown fox"
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-24.php)**:**
+
+    ```js
+    function truncate(str, no_words) {
+        return str.split(" ").splice(0,no_words).join(" ");
+    }
+    console.log(truncate('The quick brown fox jumps over the lazy dog', 4));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "The quick brown fox"
+    ```
+
+    </details>
+
+    <hr>
+    <br>
