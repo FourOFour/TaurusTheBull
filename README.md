@@ -2890,3 +2890,78 @@
 
     <hr>
     <br>
+
+38. Write a JavaScript function to create a case-insensitive search.
+
+    **Test Data :**
+
+    ```js
+    console.log(case_insensitive_search('JavaScript Exercises', 'exercises'));
+    console.log(case_insensitive_search('JavaScript Exercises', 'Exercises'));
+    console.log(case_insensitive_search('JavaScript Exercises', 'Exercisess'));
+    ```
+
+    ```js
+    "Matched"
+    "Matched"
+    "Not Matched"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function case_insensitive_search(str, search) {
+        return str.match(new RegExp(search, 'i')) !== null ? 'Matched' : 'Not Matched';
+    }
+    console.log(case_insensitive_search('JavaScript Exercises', 'exercises'));
+    console.log(case_insensitive_search('JavaScript Exercises', 'Exercises'));
+    console.log(case_insensitive_search('JavaScript Exercises', 'Exercisess'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "Matched"
+    "Matched"
+    "Not Matched"
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-38.php)**:**
+
+    ```js
+    function case_insensitive_search(str, search_str)
+    {
+        var result= str.search(new RegExp(search_str, "i"));
+    
+        if (result>0)
+            return 'Matched';
+        else
+            return 'Not Matched';  
+    }
+    console.log(case_insensitive_search('JavaScript Exercises', 'exercises'));
+    console.log(case_insensitive_search('JavaScript Exercises', 'Exercises'));
+    console.log(case_insensitive_search('JavaScript Exercises', 'Exercisess'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "Matched"
+    "Matched"
+    "Not Matched"
+    ```
+
+    </details>
+
+    <hr>
+    <br>
