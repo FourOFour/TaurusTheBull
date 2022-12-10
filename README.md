@@ -3517,3 +3517,214 @@
 
     <hr>
     <br>
+
+48. Write a JavaScript function to get the successor of a string.
+
+    Note: The successor is calculated by incrementing characters starting from the rightmost alphanumeric (or the rightmost character if there are no alphanumerics) in the string. Incrementing a digit always results in another digit, and incrementing a letter results in another letter of the same case. If the increment generates a carry, the character to the left of it is incremented. This process repeats until there is no carry, adding an additional character if necessary.
+
+    ```js
+    string.successor("abcd") == "abce"
+    string.successor("THX1138") == "THX1139"
+    string.successor("< >") == "< >"
+    string.successor("1999zzz") == "2000aaa"
+    string.successor("ZZZ9999") == "AAAA0000"
+    ```
+
+    **Test Data :**
+
+    ```js
+    console.log(successor('abcd'));
+    console.log(successor('3456'));
+    ```
+
+    ```js
+    "abce"
+    "3457"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was, this should be interesting **:**
+
+    ```js
+    function successor(str) {
+        let arr = str.split(''),
+            reg = /[a-zA-Z0-9]/
+            result = [],
+            incress = true;
+
+        arr.reverse().forEach((item, index) => {
+            if (reg.test(item)) {
+                if (incress) {
+                    switch (true) {
+                        case /[a-z]/.test(item):
+                            if (item === 'z') {
+                                if (index === arr.length-1) {
+                                    result.push('a');
+                                    result.push('a');
+                                    incress = false;
+                                } else {
+                                    result.push('a');
+                                    incress = true;
+                                }
+                            } else {
+                                result.push(String.fromCharCode(item.charCodeAt(0) + 1));
+                                incress = false;
+                            }
+                            break;
+                        case /[A-Z]/.test(item):
+                            if (item === 'Z') {
+                                if (index === arr.length-1) {
+                                    result.push('A');
+                                    result.push('A');
+                                    incress = false;
+                                } else {
+                                    result.push('A');
+                                    incress = true;
+                                }
+                            } else {
+                                result.push(String.fromCharCode(item.charCodeAt(0) + 1));
+                                incress = false;
+                            }
+                            break;
+                        case /[0-9]/.test(item):
+                            if (item === '9') {
+                                if (index === arr.length-1) {
+                                    result.push('0');
+                                    result.push('1');
+                                    incress = false;
+                                } else {
+                                    result.push('0');
+                                    incress = true;
+                                }
+                            } else {
+                                result.push(parseInt(item) + 1);
+                                incress = false;
+                            }
+                            break;
+                        default:
+                            console.log('not a word or digit!;', item);
+                            break;
+                    }
+                } else {
+                    result.push(item);
+                    incress = false;
+                }
+            } else {
+                result.push(item);
+                incress = false;
+            }
+        }, true);
+
+        return result.reverse().join('');
+    }
+    console.log(successor("abcd"));
+    console.log(successor("THX1138"));
+    console.log(successor("< >"));
+    console.log(successor("1999zzz"));
+    console.log(successor("ZZZ9999"));
+    console.log(successor('abcd'));
+    console.log(successor('3456'));
+    ```
+
+    Which  had the following result **:**
+
+    ```js
+    "abce"
+    "THX1139"
+    "< >"
+    "2000aaa"
+    "AAAA0000"
+    "abce"
+    "3457"
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-48.php)**:**
+
+    ```js
+    function successor(str) {
+            var alphabet = 'abcdefghijklmnopqrstuvwxyz',
+                length = alphabet.length,
+                result = str,
+                i = str.length;
+
+            while(i >= 0) {
+                var last = str.charAt(--i),
+                    next = '',
+                    carry = false;
+
+                if (isNaN(last)) {
+                    index = alphabet.indexOf(last.toLowerCase());
+
+                    if (index === -1) {
+                        next = last;
+                        carry = true;
+                    }
+                    else {
+                        var isUpperCase = last === last.toUpperCase();
+                        next = alphabet.charAt((index + 1) % length);
+                        if (isUpperCase) {
+                            next = next.toUpperCase();
+                        }
+
+                        carry = index + 1 >= length;
+                        if (carry && i === 0) {
+                            var added = isUpperCase ? 'A' : 'a';
+                            result = added + next + result.slice(1);
+                            break;
+                        }
+                    }
+                }
+                else {
+                    next = +last + 1;
+                    if(next > 9) {
+                        next = 0;
+                        carry = true;
+                    }
+
+                    if (carry && i === 0) {
+                        result = '1' + next + result.slice(1);
+                        break;
+                    }
+                }
+
+                result = result.slice(0, i) + next + result.slice(i + 1);
+                if (!carry) {
+                    break;
+                }
+            }
+            return result;
+        }
+    console.log(successor("abcd"));
+    console.log(successor("THX1138"));
+    console.log(successor("< >"));
+    console.log(successor("1999zzz"));
+    console.log(successor("ZZZ9999"));
+    console.log(successor('abcd'));
+    console.log(successor('3456'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "abce"
+    "THX1139"
+    "<1>" // XD
+    "2000aaa"
+    "AAAA0000"
+    "abce"
+    "3457"
+    ```
+
+    </details>
+
+    <hr>
+    <br>
