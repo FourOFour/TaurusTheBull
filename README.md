@@ -2101,3 +2101,73 @@
 
     <hr>
     <br>
+
+27. Write a JavaScript function to convert ASCII to Hexadecimal format.
+
+    **Test Data :**
+
+    ```js
+    console.log(ascii_to_hexa('12'));
+    console.log(ascii_to_hexa('100'));
+    ```
+
+    ```js
+    "3132"
+    "313030"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function ascii_to_hexa(str) {
+        return str.split('').map(item => item.charCodeAt(0).toString(16)).join('');
+    }
+    console.log(ascii_to_hexa('12'));
+    console.log(ascii_to_hexa('100'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "3132"
+    "313030"
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-27.php)**:**
+
+    ```js
+    function ascii_to_hexa(str)
+    {
+        var arr1 = [];
+        for (var n = 0, l = str.length; n < l; n ++) 
+        {
+            var hex = Number(str.charCodeAt(n)).toString(16);
+            arr1.push(hex);
+        }
+        return arr1.join('');
+    }
+    console.log(ascii_to_hexa('12'));
+    console.log(ascii_to_hexa('100'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "3132"
+    "313030"
+    ```
+
+    </details>
+
+    <hr>
+    <br>
