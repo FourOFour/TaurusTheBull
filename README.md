@@ -2696,3 +2696,65 @@
 
     <hr>
     <br>
+
+35. Write a JavaScript function to remove HTML/XML tags from string.
+
+    **Test Data :**
+
+    ```js
+    console.log(strip_html_tags('<p><strong><em>PHP Exercises</em></strong></p>'));
+    ```
+
+    ```js
+    "PHP Exercises"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function strip_html_tags(str) {
+        return str.replace(/(<.+?>)|(<\/.+?>)/g, '');
+    }
+    console.log(strip_html_tags('<p><strong><em>PHP Exercises</em></strong></p>'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "PHP Exercises"
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-35.php)**:**
+
+    ```js
+    function strip_html_tags(str)
+    {
+        if ((str===null) || (str===''))
+            return false;
+        else
+        str = str.toString();
+        return str.replace(/<[^>]*>/g, '');
+    }
+    console.log(strip_html_tags('<p><strong><em>PHP Exercises</em></strong></p>'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "PHP Exercises"
+    ```
+
+    </details>
+
+    <hr>
+    <br>
