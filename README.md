@@ -3084,3 +3084,61 @@
 
     <hr>
     <br>
+
+41. Write a JavaScript function to capitalize each word in the string.
+
+    **Test Data :**
+
+    ```js
+    console.log(capitalizeWords('js string exercises'));
+    ```
+
+    ```js
+    "JS STRING EXERCISES"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function capitalizeWords(str) {
+        return str.toUpperCase();
+    }
+    console.log(capitalizeWords('js string exercises'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "JS STRING EXERCISES"
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-41.php)**:**
+
+    ```js
+    function capitalizeWords(str)
+    {
+        return str.replace(/\w\S*/g, function(txt){return txt.substr(0).toUpperCase();});
+    }
+    console.log(capitalizeWords('js string exercises'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "JS STRING EXERCISES"
+    ```
+
+    </details>
+
+    <hr>
+    <br>
