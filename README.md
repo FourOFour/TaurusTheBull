@@ -2633,3 +2633,66 @@
 
     <hr>
     <br>
+
+34. Write a JavaScript function to convert a string to title case.
+
+    **Test Data :**
+
+    ```js
+    console.log(sentenceCase('PHP exercises. python exercises.'));
+    ```
+
+    ```js
+    "Php Exercises. Python Exercises."
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function sentenceCase(str) {
+        // sec reg => \w\S*
+        return str.match(/\w+\.?/g).map(item => item.charAt(0).toUpperCase() + item.slice(1).toLowerCase()).join(' ');
+    }
+    console.log(sentenceCase('PHP exercises. python exercises.'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "Php Exercises. Python Exercises."
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-34.php)**:**
+
+    ```js
+    function sentenceCase (str) {
+        if ((str===null) || (str===''))
+            return false;
+        else
+        str = str.toString();
+
+        return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    }
+    console.log(sentenceCase('PHP exercises. python exercises.'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "Php Exercises. Python Exercises."
+    ```
+
+    </details>
+
+    <hr>
+    <br>
