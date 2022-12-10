@@ -3163,8 +3163,16 @@
 
     ```js
     function unCapitalizeWords(str) {
-        // return str.toLowerCase();
         return str.replace(/\b\w\S*\b/g, match => match.toLowerCase());
+    }
+    console.log(unCapitalizeWords('JS STRING EXERCISES'));
+    ```
+
+    Or **:**
+
+    ```js
+    function unCapitalizeWords(str) {
+        return str.toLowerCase();
     }
     console.log(unCapitalizeWords('JS STRING EXERCISES'));
     ```
