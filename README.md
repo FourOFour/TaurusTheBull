@@ -2965,3 +2965,122 @@
 
     <hr>
     <br>
+
+39. Write a JavaScript function to Uncapitalize? the first character of a string.
+
+    **Test Data :**
+
+    ```js
+    console.log(Uncapitalize('Js string exercises'));
+    ```
+
+    ```js
+    "js string exercises"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function uncapitalize(str) {
+        return str.trim().charAt(0).toLowerCase() + str.slice(1);
+    }
+    console.log(uncapitalize('Js string exercises'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "js string exercises"
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-39.php)**:**
+
+    ```js
+    function Uncapitalize(str1){
+        return str1.charAt(0).toLowerCase() + str1.slice(1);
+    }
+    console.log(Uncapitalize('Js string exercises'));    
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "js string exercises"
+    ```
+
+    </details>
+
+    <hr>
+    <br>
+
+40. Write a JavaScript function to Uncapitalize the first letter of each word of a string.
+
+    **Test Data :**
+
+    ```js
+    console.log(unCapitalize_Words('Js String Exercises'));
+    ```
+
+    ```js
+    "js string exercises"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function unCapitalize_Words(str) {
+        return str.replace(/\b([A-Z])\w*\b/g, match => match.toUpperCase());
+    }
+    console.log(unCapitalize_Words('js string exercises'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "js string exercises"
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-40.php)**:**
+
+    ```js
+    function unCapitalize_Words(str)
+    { 
+        return str.replace(/\w\S*/g, function(txt)
+            {
+                return txt.charAt(0).toLowerCase() + txt.substr(1).toLowerCase();
+            }
+        );
+    }
+    console.log(unCapitalize_Words('Js String Exercises'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "js string exercises"
+    ```
+
+    </details>
+
+    <hr>
+    <br>
