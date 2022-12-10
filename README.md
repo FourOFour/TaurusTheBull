@@ -3289,7 +3289,7 @@
     function isLowerCaseAt(str, index) {
         return str.substring(index, index+1).match(/[a-z]/) !== null;
     }
-    console.log(isLowerCaseAt ('Js STRING EXERCISES', 1));
+    console.log(isLowerCaseAt('Js STRING EXERCISES', 1));
     ```
 
     Which had the following result **:**
@@ -3310,13 +3310,74 @@
     function isLowerCaseAt(str, index) {
         return str.charAt(index).toLowerCase() === str.charAt(index);
     }
-    console.log(isLowerCaseAt ('Js STRING EXERCISES', 1));
+    console.log(isLowerCaseAt('Js STRING EXERCISES', 1));
     ```
 
     Which had the following result **:**
 
     ```js
     true
+    ```
+
+    </details>
+
+    <hr>
+    <br>
+
+45. Write a JavaScript function to get humanized number with the correct suffix such as 1st, 2nd, 3rd or 4th.
+
+    **Test Data :**
+
+    ```js
+    console.log(humanize(1));
+    console.log(humanize(20));
+    console.log(humanize(302));
+    ```
+
+    ```js
+    "1st"
+    "20th"
+    "302nd"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was that i have already done this at #15. xD
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-45.php)**:**
+
+    ```js
+    function humanize(number) {
+            if(number % 100 >= 11 && number % 100 <= 13)
+                return number + "th";
+            
+            switch(number % 10) {
+                case 1: return number + "st";
+                case 2: return number + "nd";
+                case 3: return number + "rd";
+            }
+            
+            return number + "th";
+        }
+    console.log(humanize(1));
+    console.log(humanize(20));
+    console.log(humanize(302));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "1st"
+    "20th"
+    "302nd"
     ```
 
     </details>
