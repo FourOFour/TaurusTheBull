@@ -3629,7 +3629,7 @@
     console.log(successor('3456'));
     ```
 
-    Which  had the following result **:**
+    Which had the following result **:**
 
     ```js
     "abce"
@@ -3722,6 +3722,111 @@
     "AAAA0000"
     "abce"
     "3457"
+    ```
+
+    </details>
+
+    <hr>
+    <br>
+
+49. Write a JavaScript function to get unique guid (an acronym for 'Globally Unique Identifier?) of the specified length, or 32 by default.
+
+    **Test Data :**
+
+    ```js
+    console.log(guid());
+    console.log(guid(15));
+    ```
+
+    ```js
+    "hRYilcoV7ajokxsYFl1dba41AyE0rUQR"
+    "b7pwBqrZwqaDrex"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function guid(num=32) {
+        let startUniCodeDec = 48,
+            endUniCodeDec = 122,
+            ignores = [58,59,60,61,62,63,64,91,92,93,94,95,96],
+            charList = '',
+            result = '';
+
+        for (let i = startUniCodeDec; i < endUniCodeDec; i++) {
+            if (ignores.indexOf(i) === -1) {
+                charList += String.fromCharCode(i); 
+            }
+        }
+
+        for (let i=0; i<num; i++) {
+            result += charList.charAt(Math.floor(Math.random() * charList.length));
+        }
+
+        return result;
+    }
+    console.log(guid());
+    console.log(guid(15));
+    ```
+
+    Or **:**
+
+    ```js
+    function guid(num=32) {
+        let result = '',
+            charList = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+        for (let i=0; i<num; i++) {
+            result += charList.charAt(Math.floor(Math.random() * charList.length));
+        }
+
+        return result;
+    }
+    console.log(guid());
+    console.log(guid(15));
+    ```
+
+    Which both had the following result **:**
+
+    ```js
+    "U9LysxLqaqLnAGbgpx8YM3WA8ipcqvvt" // Randomly generated
+    "kR0CnDcnGJ0Spyh" // Randomly generated
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-49.php)**:**
+
+    ```js
+    function guid(len) {
+        var buf = [],
+            chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
+            charlen = chars.length,
+            length = len || 32;
+            
+        for (var i = 0; i < length; i++) {
+            buf[i] = chars.charAt(Math.floor(Math.random() * charlen));
+        }
+        
+        return buf.join('');
+    }
+    console.log(guid());  
+    console.log(guid(15));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "6caxTOp0hVxoNGBNmfu81bR6JH1h5LeP" // Randomly generated
+    "YPMzKr3oXwvzws2" // Randomly generated
     ```
 
     </details>
