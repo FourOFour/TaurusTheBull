@@ -1791,3 +1791,75 @@
 
     <hr>
     <br>
+
+23. Write a JavaScript function to strip leading and trailing spaces from a string.
+
+    **Test Data :**
+
+    ```js
+    console.log(strip('w3resource '));
+    console.log(strip(' w3resource'));
+    console.log(strip(' w3resource '));
+    ```
+
+    ```js
+    "w3resource"
+    "w3resource"
+    "w3resource"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was `return str.trim();`, then i was like nah, that's too easy lets do it with `RegExp` **:**
+
+    ```js
+    function strip(str) {
+        // return str.trim();
+        const regex = /^\s+|\s+$/g;
+
+        return str.replace(regex, '');
+    }
+    console.log(strip('w3resource '));
+    console.log(strip(' w3resource'));
+    console.log(strip(' w3resource '));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "w3resource"
+    "w3resource"
+    "w3resource"
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-23.php)**:**
+
+    ```js
+    function strip(str) {
+        return str.replace(/^\s+|\s+$/g, '');
+    }
+    console.log(strip('w3resource '));
+    console.log(strip(' w3resource'));
+    console.log(strip(' w3resource  '));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "w3resource"
+    "w3resource"
+    "w3resource"
+    ```
+
+    </details>
+
+    <hr>
+    <br>
