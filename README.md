@@ -1930,3 +1930,113 @@
 
     <hr>
     <br>
+
+25. Write a JavaScript function to alphabetize a given string.
+
+    **Test Data :**
+
+    ```js
+    console.log(alphabetize_string('United States'));
+    ```
+
+    ```js
+    "SUadeeinsttt"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was, Nice! a good challange **:**
+
+    ```js
+    function alphabetize_string(str) {
+        return str.replace(/\s/, '').split('').map(function(item) {
+            return item.charCodeAt(0);
+        }).sort(function(a, b) {
+            if (a < b) {
+                return -1;
+            } else if (a > b) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }).map(function(item) {
+            return String.fromCharCode(item);
+        }).join('');
+    }
+    console.log(alphabetize_string('United States'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "SUadeeinsttt"
+    ```
+
+    There are better ways to do this but i like to experince with `.charCodeAt` and `String.fromCharCode`.
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-25.php)**:**
+
+    ```js
+    function alphabetize_string(str) 
+    {
+        return str.split('').sort().join('').trim();
+    }
+    console.log(alphabetize_string('United States'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "SUadeeinsttt"
+    ```
+
+    To understand wtf happen here xD is to understand `.sort()`, which has the following default behavior **:**
+
+    ```js
+    function compareFn(a, b) {
+        if (a is less than b by some ordering criterion) {
+            return -1;
+        }
+        if (a is greater than b by the ordering criterion) {
+            return 1;
+        }
+        // a must be equal to b
+        return 0;
+    }
+    ```
+
+    You can read the following 'JavaScript' specification for this [**23.1.3.30 Array.prototype.sort**](https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array.prototype.sort) and [**7.2.13 IsLessThan**](https://tc39.es/ecma262/multipage/abstract-operations.html#sec-islessthan).
+
+    
+    Since all values are string with a `length` of `1` you can imagine it would do the following comparison. (Just to help visualize what .sort() is doing here)
+
+    ```js
+    function compareFn(a, b) {
+        if (a.charCodeAt(0) < b.charCodeAt(0)) {
+            return -1;
+        }
+        if (a.charCodeAt(0) > b.charCodeAt(0)) {
+            return 1;
+        }
+        // a must be equal to b
+        return 0;
+    }
+    'United States'.split('').sort(compareFn).join('').trim();
+    ```
+
+    ```js
+    'SUadeeinsttt'
+    ```
+
+    </details>
+
+    <hr>
+    <br>
