@@ -1492,7 +1492,7 @@
 
     ```js
     function escape_HTML(v) {
-        let regex = /[<">]/g;
+        const regex = /[<">]/g;
         return v.replace(regex, function(match) {
             switch (match) {
                 case '&':
@@ -1551,6 +1551,86 @@
     ```
 
     I did fix `chars_to_replace`, answer was bit weird but i think whoever wrote it was just a bit sleepy, cause it works really nice (with the fix), also i like the way it went with `chars_to_replace` instead of a `switch`.
+
+    </details>
+
+    <hr>
+    <br>
+
+20. Write a JavaScript function that can pad (left, right) a string to get to a determined length.
+
+    **Test Data :**
+
+    ```js
+    console.log(formatted_string('0000',123,'l'));
+    console.log(formatted_string('00000000',123,''));
+    ```
+
+    ```js
+    "0123"
+    "12300000"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function formatted_string(pad, v, dir = 'r') {
+        var replace = v.toString(); // maybe its not string (number for example)
+        dir = dir.toLowerCase(); // it goes to r cause empty string '' will convert to 0 then false example #2
+        
+        if (dir == 'l') {
+            return pad.substring(0, pad.length - replace.length) + replace;
+        } else {
+            return replace + pad.slice(replace.length);
+        }
+    }
+    console.log(formatted_string('0000',123,'l'));
+    console.log(formatted_string('00000000',123,''));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "0123"
+    "12300000"
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-20.php)**:**
+
+    ```js
+    function formatted_string(pad, user_str, pad_pos)
+    {
+        if (typeof user_str === 'undefined') 
+            return pad;
+        if (pad_pos == 'l')
+        {
+            return (pad + user_str).slice(-pad.length);
+        }
+        else 
+        {
+            return (user_str + pad).substring(0, pad.length);
+        }
+    }
+    console.log(formatted_string('0000',123,'l'));
+    console.log(formatted_string('00000000',123,''));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "0123"
+    "12300000"
+    ```
 
     </details>
 
