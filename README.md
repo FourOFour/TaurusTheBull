@@ -3384,3 +3384,69 @@
 
     <hr>
     <br>
+
+46. Write a JavaScript function to test whether a string starts with a specified string.
+
+    **Test Data :**
+
+    ```js
+    console.log(startsWith('js string exercises', 'js'));
+    ```
+
+    ```js
+    true
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function startsWith(str, prefix) {
+        return str.match('^' + prefix) !== null;
+    }
+    console.log(startsWith('js string exercises', 'js'));
+    ```
+
+    Or **:**
+
+    ```js
+    function startsWith(str, prefix) {
+        return str.startsWith(prefix);
+    }
+    console.log(startsWith('js string exercises', 'js'));
+    ```
+
+    Which both had the following result **:**
+
+    ```js
+    true
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-46.php)**:**
+
+    ```js
+    function startsWith(input, string) {
+        return input.indexOf(string) === 0;
+    }
+    console.log(startsWith('js string exercises', 'js'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    true
+    ```
+
+    </details>
+
+    <hr>
+    <br>
