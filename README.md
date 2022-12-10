@@ -1636,3 +1636,158 @@
 
     <hr>
     <br>
+
+21. Write a JavaScript function to repeat a string a specified times.
+
+    **Test Data :**
+
+    ```js
+    console.log(repeat_string('a', 4));
+    console.log(repeat_string('a'));
+    ```
+
+    ```js
+    "aaaa"
+    "Error in string or count."
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was, we have done this before, but sure **:**
+
+    ```js
+    function repeat_string(v, c) {
+        if (c == undefined) {
+            return "Error in string or count.";
+        }
+
+        return new Array(c+1).join(v);
+    }
+    console.log(repeat_string('a', 4));
+    console.log(repeat_string('a'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "aaaa"
+    "Error in string or count."
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-21.php)**:**
+
+    ```js
+    function repeat_string(string, count) 
+    {
+        if ((string == null) || (count < 0) || (count === Infinity) || (count == null))
+        {
+            return('Error in string or count.');
+        }
+            count = count | 0; // Floor count.
+        return new Array(count + 1).join(string);
+    }
+
+    console.log(repeat_string('a', 4));
+    console.log(repeat_string('a'));
+    console.log(repeat_string('a', -2));
+    console.log(repeat_string('a', Infinity));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "aaaa"
+    "Error in string or count."
+    "Error in string or count."
+    "Error in string or count."
+    ```
+
+    Uh ops xD, i hould have checked for more then just `undefined`.
+
+    </details>
+
+    <hr>
+    <br>
+
+22. Write a JavaScript function to get a part of a string after a specified character.
+
+    **Test Data :**
+
+    ```js
+    console.log(subStrAfterChars('w3resource: JavaScript Exercises', ':','a'));
+    console.log(subStrAfterChars('w3resource: JavaScript Exercises', 'E','b'));
+    ```
+
+    ```js
+    "w3resource"
+    "xercises"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function subStrAfterChars(str, seperator, wayPoint) {
+        if (wayPoint === 'a') {
+            return str.substring(0, str.indexOf(seperator));
+        } else if (wayPoint === 'b') {
+            return str.slice(str.indexOf(seperator)+1);
+        } else {
+            return 'WHY?';
+        }
+    }
+    console.log(subStrAfterChars('w3resource: JavaScript Exercises', ':','a'));
+    console.log(subStrAfterChars('w3resource: JavaScript Exercises', 'E','b'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "w3resource"
+    "xercises"
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-22.php)**:**
+
+    ```js
+    function subStrAfterChars(str, char, pos)
+    {
+        if(pos=='b')
+            return str.substring(str.indexOf(char) + 1);
+        else if(pos=='a') 
+            return str.substring(0, str.indexOf(char));
+        else
+            return str;  
+    }
+    console.log(subStrAfterChars('w3resource: JavaScript Exercises', ':','a'));
+    console.log(subStrAfterChars('w3resource: JavaScript Exercises', 'E','b'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    "w3resource"
+    "xercises"
+    ```
+
+    </details>
+
+    <hr>
+    <br>
