@@ -1321,3 +1321,79 @@
 
     <hr>
     <br>
+
+17. Write a JavaScript function to chop a string into chunks of a given length.
+
+    **Test Data :**
+
+    ```js
+    console.log(string_chop('w3resource'));
+    console.log(string_chop('w3resource',2));
+    console.log(string_chop('w3resource',3));
+    ```
+
+    ```js
+    ["w3resource"]
+    ["w3", "re", "so", "ur", "ce"]
+    ["w3r", "eso", "urc", "e"]
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function string_chop(v, l) {
+        const regex = new RegExp('.{1,' + (l !== undefined ? l : '' ) +  '}', 'g');
+
+        return v.match(regex);
+    }
+    console.log(string_chop('w3resource'));
+    console.log(string_chop('w3resource',2));
+    console.log(string_chop('w3resource',3));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    ['w3resource']
+    ['w3', 're', 'so', 'ur', 'ce']
+    ['w3r', 'eso', 'urc', 'e']
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-17.php)**:**
+
+    ```js
+    string_chop =  function(str, size){
+        if (str == null) return [];
+        str = String(str);
+        size = ~~size;
+        return size > 0 ? str.match(new RegExp('.{1,' + size + '}', 'g')) : [str];
+    }
+    console.log(string_chop('w3resource'));
+    console.log(string_chop('w3resource',2));
+    console.log(string_chop('w3resource',3));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    ["w3resource"]
+    ["w3","re","so","ur","ce"]
+    ["w3r","eso","urc","e"]
+    ```
+
+    If `size == undefined` then `size = ~~size;` will make it `0`, otherwise returns its own value (`Number`);
+
+    </details>
+
+    <hr>
+    <br>
