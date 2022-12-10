@@ -1998,7 +1998,7 @@
     "SUadeeinsttt"
     ```
 
-    To understand wtf happen here xD is to understand `.sort()`, which has the following default behavior **:**
+    To understand wtf happen here xD, we have to understand `.sort()`, which has the following default behavior **:**
 
     ```js
     function compareFn(a, b) {
