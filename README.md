@@ -1397,3 +1397,162 @@
 
     <hr>
     <br>
+
+18. Write a JavaScript function to count the occurrence of a substring in a string.
+
+    **Test Data :**
+
+    ```js
+    console.log(count("The quick brown fox jumps over the lazy dog", 'the'));
+    console.log(count("The quick brown fox jumps over the lazy dog", 'fox',false));
+    ```
+
+    ```js
+    2
+    1
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was, wtf is `false` as 3rd argument? then went as following **:**
+
+    ```js
+    function count(v, m) {
+        let result = v.match(new RegExp(m, 'gi'));  // not case-sensetive
+        return (result ? result : []).length; // if we had zero result we will get `null` there for `[]`
+    }
+    console.log(count("The quick brown fox jumps over the lazy dog", 'the'));
+    console.log(count("The quick brown fox jumps over the lazy dog", 'fox',false));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    2
+    1
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-18.php)**:**
+
+    ```js
+    function count(main_str, sub_str) 
+    {
+        main_str += '';
+        sub_str += '';
+
+        if (sub_str.length <= 0) 
+        {
+            return main_str.length + 1;
+        }
+
+        subStr = sub_str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        return (main_str.match(new RegExp(subStr, 'gi')) || []).length;
+    }    
+    console.log(count("The quick brown fox jumps over the lazy dog", 'the'));
+    console.log(count("The quick brown fox jumps over the lazy dog", 'fox',false));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    2
+    1
+    ```
+
+    </details>
+
+    <hr>
+    <br>
+
+19. Write a JavaScript function to escape a HTML string.
+
+    **Test Data :**
+
+    ```js
+    console.log(escape_HTML('<a href="javascript-string-exercise-17.php" target="_blank">'));
+    ```
+
+    ```js
+    "&lt;a href=&quot;javascript-string-exercise-17.php&quot; target=&quot;_blank&quot;&gt;"
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was, okay we just have to replace a list **:**
+
+    ```js
+    function escape_HTML(v) {
+        let regex = /[<">]/g;
+        return v.replace(regex, function(match) {
+            switch (match) {
+                case '&':
+                    return '&amp;';
+                case '<':
+                    return '&lt;';
+                case '"':
+                    return '&quot;';
+                case '>':
+                    return '&gt;';
+                default:
+                    console.log('shouldnt be here: ', match);
+                    return '';
+            }
+        })
+    }
+    console.log(escape_HTML('<a href="javascript-string-exercise-17.php" target="_blank">'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    '&lt;a href=&quot;javascript-string-exercise-17.php&quot; target=&quot;_blank&quot;&gt;'
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-19.php)**:**
+
+    ```js
+    function escape_HTML(html_str) {
+        'use strict';
+
+        return html_str.replace(/[&<>"]/g, function (tag) {
+            var chars_to_replace = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;'
+            };
+
+            return chars_to_replace[tag] || tag;
+        });
+    }
+    console.log(escape_HTML('<a href="javascript-string-exercise-17.php" target="_blank">'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    '&lt;a href=&quot;javascript-string-exercise-17.php&quot; target=&quot;_blank&quot;&gt;'
+    ```
+
+    I did fix `chars_to_replace`, answer was bit weird but i think whoever wrote it was just a bit sleepy, cause it works really nice (with the fix), also i like the way it went with `chars_to_replace` instead of a `switch`.
+
+    </details>
+
+    <hr>
+    <br>
