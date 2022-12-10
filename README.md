@@ -2323,3 +2323,76 @@
 
     <hr>
     <br>
+
+30. Write a JavaScript function check if a string ends with specified suffix.
+
+    **Test Data :**
+
+    ```js
+    console.log(string_endsWith('JS PHP PYTHON','PYTHON'));
+    console.log(string_endsWith('JS PHP PYTHON',''));
+    ```
+
+    ```js
+    true
+    false
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function string_endsWith(str, suffix) {
+        return suffix.length > 0  ? str.endsWith(suffix) : false;
+    }
+    console.log(string_endsWith('JS PHP PYTHON','PYTHON'));
+    console.log(string_endsWith('JS PHP PYTHON',''));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    true
+    false
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-30.php)**:**
+
+    ```js
+    function string_endsWith(str, suffix) 
+    {
+        if (((str===null) || (str==='')) || ((suffix===null) || (suffix==='')))
+        {
+            return false;
+        }
+        else
+        {     
+        str = str.toString();
+        suffix = suffix.toString();
+        }
+        return str.indexOf(suffix, str.length -     suffix.length) !== -1;
+    }
+    console.log(string_endsWith('JS PHP PYTHON','PYTHON'));
+    console.log(string_endsWith('JS PHP PYTHON',''));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    true
+    false
+    ```
+
+    </details>
+
+    <hr>
+    <br>
