@@ -51,7 +51,7 @@
             seconds = date.getSeconds(),
             AMPM = ((hours / 12) >= 1) ? 'PM' : 'AM';
 
-        return `Today is : ${day}. \nCurrent time is : ${hours%12} ${AMPM} : ${minutes} : ${seconds}`;
+        return `Today is : ${day}.\nCurrent time is : ${hours%12} ${AMPM} : ${minutes} : ${seconds}`;
     }
     console.log(displayTime());
     ```
@@ -59,7 +59,7 @@
     Which had the following result **:**
 
     ```js
-    'Today is : Sunday. '
+    'Today is : Sunday.'
     'Current time is : 3 PM : 0 : 54'
     ```
 
@@ -109,11 +109,159 @@
     } 
     console.log("Current Time : "+hour + prepand + " : " + minute + " : " + second);
     ```
+
     Which had the following result **:**
 
     ```js
     'Today is : Sunday. '
     'Current time is : 3 PM : 0 : 54'
+    ```
+
+    </details>
+
+    <hr>
+    <br>
+
+2. Write a JavaScript program to print the contents of the current window.
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function printCurrentPage() {
+        window.print();
+    }
+
+    printCurrentPage();
+    ```
+    
+    **Prints the page on load!**
+
+    ```js
+    function printCurrentPage() {
+        window.print();
+    }
+    
+    // adds a button to the page.
+    {
+        let button = document.createElement('button');
+        button.addEventListener('click', printCurrentPage);
+        button.innerHTML = 'Print this page.';
+        document.body.append(button);
+    }
+    ```
+
+    **Adds a button to prints the page on click.**
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-basic-exercise-2.php) **:**
+
+    ```html
+    <button onclick="print_current_page()">Print this page</button>
+    ```
+
+    ```js
+    function print_current_page()
+    {
+        window.print();
+    }
+    ```
+    
+    **Prints the page on clicking the button!**
+
+    </details>
+
+    <hr>
+    <br>
+
+3. Write a JavaScript program to get the current date.
+
+    **Expected Output :**
+
+    ```js
+    'mm-dd-yyyy, mm/dd/yyyy or dd-mm-yyyy, dd/mm/yyyy'
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function displayDate() {
+        let date = new Date(),
+            day = date.getDate(),
+            month = date.getMonth() + 1,
+            year = date.getFullYear();
+
+        {
+            if (day < 10) day = '0' + day;
+            if (month < 10) month = '0' + month;
+        }
+
+        return `${day}-${month}-${year}`; // dd-mm-yyyy
+        return `${day}/${month}/${year}`; // dd/mm/yyyy
+        return `${month}-${day}-${year}`; // mm-dd-yyyy
+        return `${month}/${day}/${year}`; // mm/dd/yyyy
+    }
+    console.log(displayDate());
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    '11-12-2022'
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-basic-exercise-3.php) **:**
+
+    ```js
+    var today = new Date();
+    var dd = today.getDate();
+
+    var mm = today.getMonth()+1; 
+    var yyyy = today.getFullYear();
+    if(dd<10) 
+    {
+        dd='0'+dd;
+    } 
+
+    if(mm<10) 
+    {
+        mm='0'+mm;
+    } 
+    today = mm+'-'+dd+'-'+yyyy;
+    console.log(today);
+    today = mm+'/'+dd+'/'+yyyy;
+    console.log(today);
+    today = dd+'-'+mm+'-'+yyyy;
+    console.log(today);
+    today = dd+'/'+mm+'/'+yyyy;
+    console.log(today);
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    '12-11-2022'
+    '12/11/2022'
+    '11-12-2022'
+    '11/12/2022'
     ```
 
     </details>
