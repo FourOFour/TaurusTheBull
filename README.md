@@ -4127,3 +4127,84 @@
 
     <hr>
     <br>
+
+53. Write a JavaScript function to check a given string is in Flat case or not.
+
+    Flat case: As the name implies, flatcase refers to the use of lowercase letters, with no spaces between words.
+
+    **Test Data :**
+
+    ```js
+    ('j') -> true
+    ('java exercises') -> false
+    ('JavaScriptExercises') -> false
+    ('javascriptexercises') -> true
+    (12356) -> "It must be a string."
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function in_flat_case(str) {
+        if (typeof str !== 'string') return 'It must be a string.';
+
+        return !/[^a-z]/.test(str);
+    }
+    console.log(in_flat_case('j'));
+    console.log(in_flat_case('java exercises'));
+    console.log(in_flat_case('JavaScriptExercises'));
+    console.log(in_flat_case('javascriptexercises'));
+    console.log(in_flat_case(12356));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    true
+    false
+    false
+    true
+    'It must be a string.'
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-53.php)**:**
+
+    ```js
+    const test = (text) => {
+        if (typeof text !== 'string') {
+            return 'It must be a string.'
+        }
+        const pattern = /^[a-z]*$/
+        return pattern.test(text)
+    }
+    console.log(test('j'))
+    console.log(test('java exercises'))
+    console.log(test('JavaScriptExercises'))
+    console.log(test('javascriptexercises'))
+    console.log(test(12356))
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    true
+    false
+    false
+    true
+    'It must be a string.'
+    ```
+
+    </details>
+
+    <hr>
+    <br>
