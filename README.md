@@ -8,7 +8,7 @@
 
 ## Categories 
 
-* [**String**](#String)
+* [**String**](#String) (mixed with `RegExp`) - [60]
     * [w3resource - Exercises, Practice, Solution](https://www.w3resource.com/javascript-exercises/javascript-string-exercises.php)
 
 <hr>
