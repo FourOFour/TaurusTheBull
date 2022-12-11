@@ -4577,7 +4577,7 @@
 
     ```js
     function most_frequent_character(str) {
-        if (typeof str !== 'string') return 'It must be a string.';
+        if (typeof str != 'string') return 'It must be a string.';
 
         let max = {
             index: -1,
@@ -4683,7 +4683,7 @@
 
     ```js
     function most_frequent_word(str) {
-        if (typeof str !== 'string') return 'It must be a string.';
+        if (typeof str != 'string') return 'It must be a string.';
 
         let words = {},
             max = {
@@ -4773,6 +4773,85 @@
     'The'
     'Python'
     'was'
+    'It must be a string.'
+    ```
+
+    </details>
+
+    <hr>
+    <br>
+
+60. Write a JavaScript function to reverse words in a given string.
+
+    **Test Data :**
+
+    ```js
+    ("abc") -> "cba"
+    ("JavaScript Exercises") -> "tpircSavaJ sesicrexE"
+    (1234) -> "It must be a string."
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function reverse_words(str) {
+        if (typeof str != 'string') return 'It must be a string.';
+
+        return str.split(' ').map(item => [...item].reverse().join('')).join(' ');
+    }
+    console.log(reverse_words('abc'));
+    console.log(reverse_words('JavaScript Exercises'));
+    console.log(reverse_words(1234));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    'cba'
+    'tpircSavaJ sesicrexE'
+    'It must be a string.'
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-60.php)**:**
+
+    ```js
+    function test(text) {
+        if (text.length === 0) 
+        {
+            return 'String should not be empty!'
+        }
+        if (typeof text !== 'string')
+        {
+            return 'It must be a string.'
+        }
+        var words = [];
+        words = text.match(/\S+/g);
+        var reverse_word = "";
+        for (var i = 0; i < words.length; i++) {
+            reverse_word += words[i].split('').reverse().join('') + " ";
+        }
+        return reverse_word
+    }
+    console.log(test("abc"))
+    console.log(test("JavaScript Exercises"))
+    console.log(test(1234))
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    'cba '
+    'tpircSavaJ sesicrexE '
     'It must be a string.'
     ```
 
