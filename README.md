@@ -1157,7 +1157,7 @@
 
     ```js
     function humanize_format(num) {
-        if (num !== undefined) {
+        if (num != undefined) {
             let str = num.toString(10),
                 end;
 
@@ -1263,7 +1263,7 @@
 
     ```js
     function text_truncate(v, i, p='...') {
-        if (i !== undefined) {
+        if (i != undefined) {
             return v.substring(0, i - p.length) + p;
         } else {
             return v;
@@ -1346,7 +1346,7 @@
 
     ```js
     function string_chop(v, l) {
-        const regex = new RegExp('.{1,' + (l !== undefined ? l : '' ) +  '}', 'g');
+        const regex = new RegExp('.{1,' + (l != undefined ? l : '' ) +  '}', 'g');
 
         return v.match(regex);
     }
@@ -1739,9 +1739,9 @@
 
     ```js
     function subStrAfterChars(str, seperator, wayPoint) {
-        if (wayPoint === 'a') {
+        if (wayPoint == 'a') {
             return str.substring(0, str.indexOf(seperator));
-        } else if (wayPoint === 'b') {
+        } else if (wayPoint == 'b') {
             return str.slice(str.indexOf(seperator)+1);
         } else {
             return 'WHY?';
@@ -2915,7 +2915,7 @@
 
     ```js
     function case_insensitive_search(str, search) {
-        return str.match(new RegExp(search, 'i')) !== null ? 'Matched' : 'Not Matched';
+        return str.match(new RegExp(search, 'i')) != null ? 'Matched' : 'Not Matched';
     }
     console.log(case_insensitive_search('JavaScript Exercises', 'exercises'));
     console.log(case_insensitive_search('JavaScript Exercises', 'Exercises'));
@@ -3230,7 +3230,7 @@
 
     ```js
     function isUpperCaseAt(str, index) {
-        return str.slice(index,index+1).match(/[A-Z]/) !== null;
+        return str.slice(index,index+1).match(/[A-Z]/) != null;
     }
     console.log(isUpperCaseAt('Js STRING EXERCISES', 1));
     ```
@@ -3287,7 +3287,7 @@
 
     ```js
     function isLowerCaseAt(str, index) {
-        return str.substring(index, index+1).match(/[a-z]/) !== null;
+        return str.substring(index, index+1).match(/[a-z]/) != null;
     }
     console.log(isLowerCaseAt('Js STRING EXERCISES', 1));
     ```
@@ -3405,7 +3405,7 @@
 
     ```js
     function startsWith(str, prefix) {
-        return str.match('^' + prefix) !== null;
+        return str.match('^' + prefix) != null;
     }
     console.log(startsWith('js string exercises', 'js'));
     ```
@@ -3471,7 +3471,7 @@
 
     ```js
     function endsWith(str, suffix) {
-        return str.match(suffix + '$') !== null;
+        return str.match(suffix + '$') != null;
     }
     console.log(endsWith('JS string exercises', 'exercises'));
     ```
@@ -3560,8 +3560,8 @@
                 if (incress) {
                     switch (true) {
                         case /[a-z]/.test(item):
-                            if (item === 'z') {
-                                if (index === arr.length-1) {
+                            if (item == 'z') {
+                                if (index == arr.length-1) {
                                     result.push('a');
                                     result.push('a');
                                     incress = false;
@@ -3575,8 +3575,8 @@
                             }
                             break;
                         case /[A-Z]/.test(item):
-                            if (item === 'Z') {
-                                if (index === arr.length-1) {
+                            if (item == 'Z') {
+                                if (index == arr.length-1) {
                                     result.push('A');
                                     result.push('A');
                                     incress = false;
@@ -3590,8 +3590,8 @@
                             }
                             break;
                         case /[0-9]/.test(item):
-                            if (item === '9') {
-                                if (index === arr.length-1) {
+                            if (item == '9') {
+                                if (index == arr.length-1) {
                                     result.push('0');
                                     result.push('1');
                                     incress = false;
@@ -3664,19 +3664,19 @@
                 if (isNaN(last)) {
                     index = alphabet.indexOf(last.toLowerCase());
 
-                    if (index === -1) {
+                    if (index == -1) {
                         next = last;
                         carry = true;
                     }
                     else {
-                        var isUpperCase = last === last.toUpperCase();
+                        var isUpperCase = last == last.toUpperCase();
                         next = alphabet.charAt((index + 1) % length);
                         if (isUpperCase) {
                             next = next.toUpperCase();
                         }
 
                         carry = index + 1 >= length;
-                        if (carry && i === 0) {
+                        if (carry && i == 0) {
                             var added = isUpperCase ? 'A' : 'a';
                             result = added + next + result.slice(1);
                             break;
@@ -3690,7 +3690,7 @@
                         carry = true;
                     }
 
-                    if (carry && i === 0) {
+                    if (carry && i == 0) {
                         result = '1' + next + result.slice(1);
                         break;
                     }
@@ -3758,7 +3758,7 @@
             result = '';
 
         for (let i = startUniCodeDec; i < endUniCodeDec; i++) {
-            if (ignores.indexOf(i) === -1) {
+            if (ignores.indexOf(i) == -1) {
                 charList += String.fromCharCode(i); 
             }
         }
@@ -3857,10 +3857,10 @@
 
     ```js
     function is_palindrome(str) {
-        if (typeof str === 'string') {
+        if (typeof str == 'string') {
             let txt = str.replace(/\W/g, '').trim().toLowerCase();
 
-            return txt === txt.split('').reverse().join('');
+            return txt == txt.split('').reverse().join('');
         } else {
             return "It must be string";
         }
@@ -4040,11 +4040,11 @@
     ```js
     function is_exceeding(str) {
         return str.split('').reduce((sum, item, index, arr) => {
-            if (sum === undefined) {
+            if (sum == undefined) {
                 return item.charCodeAt(0);
-            } else if (sum === false) {
+            } else if (sum == false) {
                 return false;
-            } else if (index === arr.length-1) {
+            } else if (index == arr.length-1) {
                 return true;
             } else if (sum < item.charCodeAt(0)) {
                 return item.charCodeAt(0);
@@ -4150,7 +4150,7 @@
 
     ```js
     function in_flat_case(str) {
-        if (typeof str !== 'string') return 'It must be a string.';
+        if (typeof str != 'string') return 'It must be a string.';
 
         return !/[^a-z]/.test(str);
     }
@@ -4232,7 +4232,7 @@
 
     ```js
     function is_kebab_case(str) {
-        if (typeof str !== 'string') return 'It must be a string.';
+        if (typeof str != 'string') return 'It must be a string.';
 
         return !/[^a-z-]/.test(str);
     }
@@ -4288,6 +4288,180 @@
     true
     'It must be a string.'
     true
+    ```
+
+    </details>
+
+    <hr>
+    <br>
+
+55. Write a JavaScript function to check whether a string is a Pangram or not.
+
+    A pangram or holoalphabetic sentence is a sentence using every letter of a given alphabet at least once. Pangrams have been used to display typefaces, test equipment, and develop skills in handwriting, calligraphy, and keyboarding
+
+    **Test Data :**
+
+    ```js
+    ("The quick brown fox jumps over the lazy dog") -> true
+    ("Waltz, bad nymph, for quick jigs vex.") -> true
+    ("The five boxing wizards jump quickly.") -> true
+    ("The boxing wizards jump quickly.") -> false
+    (12356) -> "It must be a string."
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function is_pangram(str) {
+        if (typeof str != 'string') return 'It must be a string.';
+        let result = [];
+        
+        str.replace(/[^a-z]/ig, '').split('').forEach(item => {
+            if (result.indexOf(item.toLocaleLowerCase()) == -1) result.push(item.toLowerCase());
+        })
+
+        return result.length == 26;
+    }
+    console.log(is_pangram("The quick brown fox jumps over the lazy dog"));
+    console.log(is_pangram("Waltz, bad nymph, for quick jigs vex."));
+    console.log(is_pangram("The five boxing wizards jump quickly."));
+    console.log(is_pangram("The boxing wizards jump quickly."));
+    console.log(is_pangram(12356));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    true
+    true
+    true
+    false
+    'It must be a string.'
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-55.php)**:**
+
+    ```js
+    const test = (string) => {
+        if (typeof string !== 'string') {
+            return 'It must be a string.'
+        }
+        const result = new Set()
+        for (const ch of string.toUpperCase()) 
+        {
+            if (/[A-Z]/.test(ch)) 
+            {
+                result.add(ch)
+            }
+        }
+        return result.size === 26
+    }
+    console.log(test("The quick brown fox jumps over the lazy dog"))
+    console.log(test("Waltz, bad nymph, for quick jigs vex."))
+    console.log(test("The five boxing wizards jump quickly."))
+    console.log(test("The boxing wizards jump quickly."))
+    console.log(test(12356))
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    true
+    true
+    true
+    false
+    'It must be a string.'
+    ```
+
+    </details>
+
+    <hr>
+    <br>
+
+56. Write a JavaScript function to check whether a string is in Pascal case or not.
+
+    A PascalCase naming convention capitalizes the first letter of each compound word in a variable. It is a best practice in software development to use descriptive variable names.
+
+    **Test Data :**
+
+    ```js
+    ("XmlStream") -> true
+    ("IOStream") -> true
+    ("javascript") -> false
+    (12356) -> "It must be a string."
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function is_pascal_case(str) {
+        if (typeof str != 'string') return 'It must be a string.';
+
+        return /^[A-Z][A-Za-z]*$/.test(str);
+    }
+    console.log(is_pascal_case('XmlStream'));
+    console.log(is_pascal_case('IOStream'));
+    console.log(is_pascal_case('IEnumerable'));
+    console.log(is_pascal_case('javascript'));
+    console.log(is_pascal_case(12356));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    true
+    true
+    true
+    false
+    'It must be a string.'
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-56.php)**:**
+
+    ```js
+    const test = (word) => {
+        if (typeof word !== 'string')
+        {
+            return 'It must be a string.'
+        }
+        const pattern = /^[A-Z][A-Za-z]*$/
+        return pattern.test(word)
+    }
+    console.log(test("XmlStream"))
+    console.log(test("IOStream"))
+    console.log(test("IEnumerable"))
+    console.log(test("javascript"))
+    console.log(test(12356))
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    true
+    true
+    true
+    false
+    'It must be a string.'
     ```
 
     </details>
