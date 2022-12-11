@@ -4663,3 +4663,120 @@
 
     <hr>
     <br>
+
+59. Write a JavaScript program to find the most frequent word in a given string.
+
+    **Test Data :**
+
+    ```js
+    ("The quick brown fox jumps over the lazy dog") -> "the"
+    ("Python is a high-level, general-purpose programming language.") -> "python"
+    (" It was the same man, she was sure of it. It's always the same, Chauncey.") -> "was"
+    (12321) -> "It must be a string."
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function most_frequent_word(str) {
+        if (typeof str !== 'string') return 'It must be a string.';
+
+        let words = {},
+            max = {
+                v: '',
+                count: -1
+            };
+
+        str.trim().split(' ').forEach((item) => {
+            words[item] ? ++words[item] : words[item] = 1
+        });
+
+        for (v in words) {
+            if (words[v] > max.count) {
+                max.count = words[v];
+                max.v = v;
+            }
+        }
+
+        return max.v;
+    }
+    console.log(most_frequent_word('The quick brown fox jumps over the lazy dog'));
+    console.log(most_frequent_word('Python is a high-level, general-purpose programming language.'));
+    console.log(most_frequent_word(' It was the same man, she was sure of it. It\'s always the same, Chauncey.'));
+    console.log(most_frequent_word(12321));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    'The'
+    'Python'
+    'was'
+    'It must be a string.'
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-59.php)**:**
+
+    ```js
+    const test = (text) => { 
+        if (text.length === 0) 
+        {
+            return 'String should not be empty!'
+        }
+        if (typeof text !== 'string')
+        {
+            return 'It must be a string.'
+        }
+        const data = text.split(' ')
+        if (data.length < 2) {
+            return data[0]
+        }
+        const words = text.split(' ')
+        if (words.length < 2) {
+            return words[0]
+        }
+        const temp = {}
+        words.forEach(word => {
+            temp[word.toLocaleLowerCase()] = temp[word.toLocaleLowerCase()] + 1 || 1
+        })
+        const max = Object.keys(temp).reduce((n, word) => {
+            if (temp[word] > n.count) 
+            { 
+            return { word, count: temp[word] } 
+            } 
+            else 
+            { 
+            return n 
+            }
+        }, { word: '', count: 0 })
+        return max.word
+    }
+    console.log(test("The quick brown fox jumps over the lazy dog"))
+    console.log(test("Python is a high-level, general-purpose programming language."))
+    console.log(test(" It was the same man, she was sure of it. It's always the same, Chauncey."))
+    console.log(test(12321))
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    'The'
+    'Python'
+    'was'
+    'It must be a string.'
+    ```
+
+    </details>
+
+    <hr>
+    <br>
