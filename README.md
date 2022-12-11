@@ -4208,3 +4208,89 @@
 
     <hr>
     <br>
+
+54. Write a JavaScript function to check a given string is in Kebab case or not.
+
+    Kebab case: "the-quick-brown-fox-jumps-over-the-lazy-dog"
+    Similar to snake case, above, except hyphens rather than underscores are used to replace spaces. It is also known as spinal case, param case, Lisp case in reference to the Lisp programming language, or dash case (or illustratively as kebab-case)
+
+    **Test Data :**
+
+    ```js
+    ('j') -> true
+    ('java exercises') -> false
+    ('JavaScriptExercises') -> false
+    ('javascriptexercises') -> true
+    (12356) -> "It must be a string."
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was, what do you want Kebab for? xD **:**
+
+    ```js
+    function is_kebab_case(str) {
+        if (typeof str !== 'string') return 'It must be a string.';
+
+        return !/[^a-z-]/.test(str);
+    }
+    console.log(is_kebab_case('j'));
+    console.log(is_kebab_case('java exercises'));
+    console.log(is_kebab_case('JavaScriptExercises'));
+    console.log(is_kebab_case('javascriptexercises'));
+    console.log(is_kebab_case(12356));
+    console.log(is_kebab_case('the-quick-brown-fox-jumps-over-the-lazy-dog'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    true
+    false
+    false
+    true
+    'It must be a string.'
+    true
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-54.php)**:**
+
+    ```js
+    const test = (text) => {
+        if (typeof text !== 'string') {
+                return 'It must be a string.'
+        }
+        const pattern = /(\w+)-(\w)([\w-]*)/
+        return pattern.test(text) && !text.includes('_')
+    }
+    console.log(test('j'))
+    console.log(test('Java-Exercises'))
+    console.log(test('JavaScript-Exercises'))
+    console.log(test('javascript_exercises'))
+    console.log(test(12356))
+    console.log(test('the-quick-brown-fox-jumps-over-the-lazy-dog'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    true
+    false
+    false
+    true
+    'It must be a string.'
+    true
+    ```
+
+    </details>
+
+    <hr>
+    <br>
