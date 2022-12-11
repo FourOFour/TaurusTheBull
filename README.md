@@ -4557,3 +4557,109 @@
 
     <hr>
     <br>
+
+58. Write a JavaScript program to find the most frequent character in a given string.
+
+    **Test Data :**
+
+    ```js
+    ("Madam") -> "a"
+    ("civic") -> "c"
+    ("HellloL223LLL") -> "L"
+    (12321) -> "It must be a string."
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function most_frequent_character(str) {
+        if (typeof str !== 'string') return 'It must be a string.';
+
+        let max = {
+            index: -1,
+            count: 0
+        };
+
+        [...str].forEach((item, index) => {
+            if (str.match(new RegExp(item, 'g')).length > max.count) {
+                max.index = index;
+                max.count = str.match(item).length;
+            }
+        });
+
+        return str.charAt(max.index);
+    }
+    console.log(most_frequent_character('Madam'));
+    console.log(most_frequent_character('civic'));
+    console.log(most_frequent_character('HellloL223LLL'));
+    console.log(most_frequent_character(12321));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    'a'
+    'c'
+    'L'
+    'It must be a string.'
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-58.php)**:**
+
+    ```js
+    const test = (str) => { 
+        if (str.length === 0) 
+        {
+            return 'String should not be empty!'
+        }
+        if (typeof str !== 'string')
+        {
+            return 'It must be a string.'
+        }
+        const occurrence_Map = new Map()
+
+        for (const char of str) 
+        {
+            occurrence_Map.set(char, occurrence_Map.get(char) + 1 || 1)
+        }
+
+        // find the max char from the occurrence map
+        let max_char = { char: '', occur: -Infinity }
+
+        for (const [char, occur] of occurrence_Map) {
+            if (occur > max_char.occur) {
+            max_char = { char,occur }
+            }
+        }
+
+        return max_char.char
+    }
+    console.log(test("Madam"))
+    console.log(test("civic"))
+    console.log(test("HellloL223LLL"))
+    console.log(test(12321))
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    'a'
+    'c'
+    'L'
+    'It must be a string.'
+    ```
+
+    </details>
+
+    <hr>
+    <br>
