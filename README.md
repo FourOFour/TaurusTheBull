@@ -7,9 +7,119 @@
 <br>
 
 ## Categories 
-
+* [**Basic**](#Basic)
+    * [w3resource - JavaScript Basic](https://www.w3resource.com/javascript-exercises/javascript-basic-exercises.php)
 * [**String**](#String) (mixed with `RegExp`) - [60]
-    * [w3resource - Exercises, Practice, Solution](https://www.w3resource.com/javascript-exercises/javascript-string-exercises.php)
+    * [w3resource - JavaScript String](https://www.w3resource.com/javascript-exercises/javascript-string-exercises.php) [1-60]
+
+<hr>
+<br>
+
+<h2 id="Basic"><b>Basic</b></h2>
+
+1. Write a JavaScript program to display the current day and time in the following format.
+
+    **Sample Output :**
+
+    ```js
+    Today is : Tuesday.
+    Current time is : 10 PM : 30 : 38
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function displayTime() {
+        const daysOfTheWeek = [
+            'Sunday',
+            'Monday',
+            'Tuesday',
+            'Wednesday',
+            'Thursday',
+            'Friday',
+            'Saturday'
+        ];
+
+        let date = new Date(),
+            day = daysOfTheWeek[date.getDay()],
+            hours = date.getHours(),
+            minutes = date.getMinutes(),
+            seconds = date.getSeconds(),
+            AMPM = ((hours / 12) >= 1) ? 'PM' : 'AM';
+
+        return `Today is : ${day}. \nCurrent time is : ${hours%12} ${AMPM} : ${minutes} : ${seconds}`;
+    }
+    console.log(displayTime());
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    'Today is : Sunday. '
+    'Current time is : 3 PM : 0 : 54'
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-basic-exercise-1.php) **:**
+
+    ```js
+    var today = new Date();
+    var day = today.getDay();
+    var daylist = ["Sunday","Monday","Tuesday","Wednesday ","Thursday","Friday","Saturday"];
+    console.log("Today is : " + daylist[day] + ".");
+    var hour = today.getHours();
+    var minute = today.getMinutes();
+    var second = today.getSeconds();
+    var prepand = (hour >= 12)? " PM ":" AM ";
+    hour = (hour >= 12)? hour - 12: hour;
+    if (hour===0 && prepand===' PM ') 
+    { 
+        if (minute===0 && second===0)
+        { 
+            hour=12;
+            prepand=' Noon';
+        } 
+        else
+        { 
+            hour=12;
+            prepand=' PM';
+        } 
+    } 
+    if (hour===0 && prepand===' AM ') 
+    { 
+        if (minute===0 && second===0)
+        { 
+            hour=12;
+            prepand=' Midnight';
+        } 
+        else
+        { 
+            hour=12;
+            prepand=' AM';
+        } 
+    } 
+    console.log("Current Time : "+hour + prepand + " : " + minute + " : " + second);
+    ```
+    Which had the following result **:**
+
+    ```js
+    'Today is : Sunday. '
+    'Current time is : 3 PM : 0 : 54'
+    ```
+
+    </details>
+
+    <hr>
+    <br>
 
 <hr>
 <br>
