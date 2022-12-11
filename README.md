@@ -4019,3 +4019,111 @@
 
     <hr>
     <br>
+
+52. Write a JavaScript programe to check a given word is exceeding word or not.
+
+    There is an increasing gap between two adjacent characters in exceeding words. In ASCII, the gap represents the distance between two characters.
+
+    **Test Data :**
+
+    ```js
+    'acgl' -> true
+    'aebc' -> false
+    ```
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function is_exceeding(str) {
+        return str.split('').reduce((sum, item, index, arr) => {
+            if (sum === undefined) {
+                return item.charCodeAt(0);
+            } else if (sum === false) {
+                return false;
+            } else if (index === arr.length-1) {
+                return true;
+            } else if (sum < item.charCodeAt(0)) {
+                return item.charCodeAt(0);
+            } else {
+                return false;
+            }
+        }, undefined);
+    }
+    console.log(is_exceeding('acgl'));
+    console.log(is_exceeding('aebc'));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    true
+    false
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-string-exercise-52.php)**:**
+
+    ```js
+    /**
+    *Source:shorturl.at/asFM4
+    * @function test
+    * @param {string} text
+    * @returns {boolean}
+    */
+    const test = (word) => {
+        if (typeof word !== 'string') {
+                return 'It must be string'
+        }
+
+        const upperChars = word
+            .toUpperCase()
+            .replace(/[^A-Z]/g, '') // remove all from str except A to Z alphabets
+
+        const adjacentDiffList = []
+
+        for (let i = 0; i < upperChars.length - 1; i++) {
+            // destructuring current char & adjacent char by index, cause in javascript String is an object.
+            const { [i]: char, [i + 1]: adjacentChar } = upperChars
+
+            if (char !== adjacentChar) {
+            adjacentDiffList.push(
+                Math.abs(char.charCodeAt() - adjacentChar.charCodeAt())
+            )
+            }
+        }
+
+        for (let i = 0; i < adjacentDiffList.length - 1; i++) {
+            const { [i]: charDiff, [i + 1]: secondCharDiff } = adjacentDiffList
+
+            if (charDiff > secondCharDiff) {
+            return false
+            }
+        }
+        return true
+    }
+    console.log(test('acgl'))
+    console.log(test('aebc'))
+    console.log(test(12356))
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    true
+    false
+    'It must be string'
+    ```
+
+    </details>
+
+    <hr>
+    <br>
