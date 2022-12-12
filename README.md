@@ -405,6 +405,82 @@
     <hr>
     <br>
 
+6. Write a JavaScript program to determine whether a given year is a leap year in the Gregorian calendar.
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was , very confusing... but thanks [**wikihow**](https://www.wikihow.com/Calculate-Leap-Years) **:**
+
+    ```js
+    function leapyear(year) {
+        return (year % 100 === 0) ? (year % 400 === 0) : (year % 4 === 0);
+    }
+    console.log(leapyear(2016));
+    console.log(leapyear(2000));
+    console.log(leapyear(1700));
+    console.log(leapyear(1800));
+    console.log(leapyear(100));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    true
+    true
+    false
+    false
+    false
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-basic-exercise-6.php) **:**
+
+    ```js
+    function leapyear(year) {
+        return year % 100 === 0 ? year % 400 === 0 : year % 4 === 0;
+    }
+    console.log(leapyear(2016));
+    console.log(leapyear(2000));
+    console.log(leapyear(1700));
+    console.log(leapyear(1800));
+    console.log(leapyear(100));
+    ```
+
+    ```js
+    const is_leapyear = year => new Date(year, 1, 29).getMonth() === 1;
+    console.log(is_leapyear(2016));
+    console.log(is_leapyear(2000));
+    console.log(is_leapyear(1700));
+    console.log(is_leapyear(1800));
+    console.log(is_leapyear(100));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    true
+    true
+    false
+    false
+    false
+    ```
+
+    </details>
+
+    <br>
+
+    [**Back to Top**](#Top)
+    
+    <hr>
+    <br>
+
 <hr>
 <br>
 
