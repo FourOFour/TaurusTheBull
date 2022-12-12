@@ -1,4 +1,4 @@
-<p align="center"><img src="https://camo.githubusercontent.com/e1a54ddebc870cb971c713b20765f1c2ed328efff836eebe3c2bafccbc12bb0a/68747470733a2f2f696d672e69636f6e73382e636f6d2f636f6c6f722f3334342f6a6176617363726970742e706e67" width="100px" alt="JS"></p>
+<p id="Top" align="center"><img src="https://camo.githubusercontent.com/e1a54ddebc870cb971c713b20765f1c2ed328efff836eebe3c2bafccbc12bb0a/68747470733a2f2f696d672e69636f6e73382e636f6d2f636f6c6f722f3334342f6a6176617363726970742e706e67" width="100px" alt="JS"></p>
 
 <h1 align="center"> Welcome to javascript-exercise-404</h1>
 
@@ -119,6 +119,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -179,6 +183,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -266,6 +274,134 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
+    <hr>
+    <br>
+
+4. Write a JavaScript program to find the area of a triangle where lengths of the three of its sides are 5, 6, 7.
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was, WHY? xD **:**
+
+    ```js
+    function triangleAreaWith3Sides(side1, side2, side3) {
+        var s = (side1 + side2 + side3)/2,
+            area =  Math.sqrt(s*((s-side1)*(s-side2)*(s-side3)));
+
+        return area;
+    }
+    console.log(triangleAreaWith3Sides(5, 6, 7));
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    14.696938456699069
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-basic-exercise-4.php) **:**
+
+    ```js
+    var side1 = 5; 
+    var side2 = 6; 
+    var side3 = 7; 
+    var s = (side1 + side2 + side3)/2;
+    var area =  Math.sqrt(s*((s-side1)*(s-side2)*(s-side3)));
+    console.log(area);
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    14.696938456699069
+    ```
+
+    </details>
+
+    <br>
+
+    [**Back to Top**](#Top)
+    
+    <hr>
+    <br>
+
+5. Write a JavaScript program to rotate the string 'w3resource' in right direction by periodically removing one letter from the end of the string and attaching it to the front.
+
+    <br>
+
+    <details><summary><b>My Answer</b></summary>
+
+    My first thought was **:**
+
+    ```js
+    function animatedWords(txt) {
+        var textNode = document.createTextNode(txt)
+            data = textNode.data;
+        
+        {
+            let div = document.createElement('div');
+            div.append(textNode);
+            document.body.append(div);
+        }
+
+        setInterval(function interval() {
+            data = letterPlays(data)
+            // less refrence to DOM, can be done with textNode.data = letterPlays(textNode.data);
+            textNode.data = data;
+        }, 100);
+        
+        function letterPlays(v) {
+            return v.charAt(v.length - 1) + v.slice(0, -1);
+        }
+    }
+    animatedWords('w3resource');
+    ```
+
+    Which had the following result **:**
+
+    ```html
+    <div>w3resource</div> <!-- goes on a spin forever! -->
+    <div>ew3resourc</div>
+    <div>cew3resour</div>
+    .
+    .
+    .
+    ```
+
+    </details>
+
+    <br>
+
+    <details><summary><b>Provided Solution</b></summary>
+
+    [**Solution**](https://www.w3resource.com/javascript-exercises/javascript-basic-exercise-5.php) **:**
+
+    ```js
+    ```
+
+    Which had the following result **:**
+
+    ```js
+    ```
+
+    </details>
+
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -347,6 +483,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -432,6 +572,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -515,6 +659,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -600,6 +748,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -668,6 +820,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -781,6 +937,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -843,6 +1003,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -900,6 +1064,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -965,6 +1133,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -1036,6 +1208,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -1122,6 +1298,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -1232,6 +1412,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -1310,6 +1494,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -1385,6 +1573,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -1494,6 +1686,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -1577,6 +1773,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -1653,6 +1853,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -1727,6 +1931,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -1812,6 +2020,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -1892,6 +2104,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -1972,6 +2188,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -2047,6 +2267,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -2119,6 +2343,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -2186,6 +2414,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -2296,6 +2528,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -2357,6 +2593,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -2427,6 +2667,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -2496,6 +2740,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -2579,6 +2827,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -2652,6 +2904,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -2762,6 +3018,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -2825,6 +3085,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -2889,6 +3153,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -2952,6 +3220,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -3014,6 +3286,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -3081,6 +3357,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -3146,6 +3426,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -3221,6 +3505,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -3278,6 +3566,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -3340,6 +3632,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -3398,6 +3694,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -3465,6 +3765,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -3522,6 +3826,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -3579,6 +3887,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -3640,6 +3952,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -3706,6 +4022,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -3773,6 +4093,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -3984,6 +4308,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -4089,6 +4417,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -4189,6 +4521,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -4275,6 +4611,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -4383,6 +4723,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -4464,6 +4808,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -4550,6 +4898,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -4643,6 +4995,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -4724,6 +5080,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -4813,6 +5173,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -4919,6 +5283,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -5036,6 +5404,10 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
 
@@ -5115,5 +5487,9 @@
 
     </details>
 
+    <br>
+
+    [**Back to Top**](#Top)
+    
     <hr>
     <br>
