@@ -4,8 +4,10 @@ const app = new function IIFE() {
         newTaskContainer = null,
         taskViewContainer = null,
         tasks = [],
-        counter = 0
+        counter = 0,
+        // So we can change id or class from here if need to
         presets = {
+            appId: 'app',
             taskViewContainerId: 'todo',
             taskIdPrefix: 'todo-task-',
             newTaskContainerId: 'todo-new-task',
@@ -48,12 +50,12 @@ const app = new function IIFE() {
     
     init();
 
-    // We chose what do we expose to app
+    // We chose what do we expose to app object
     return app;
 
     // Have a function to call on load for initialization or anywhere we want.
     function init() {
-        var app = document.querySelector('#app'),
+        var app = document.querySelector(`#${presets.appId}`),
             ul, form;
 
         {            
@@ -173,7 +175,7 @@ const app = new function IIFE() {
                 e.preventDefault();
             });
 
-            remove.value = 'remove';
+            remove.value = 'del';
             remove.setAttribute('type', 'button');
             remove.addEventListener('click', function IIFE(e) {
                 removeTask(id);
@@ -210,15 +212,17 @@ const app = new function IIFE() {
     }
 
     function setTaskToEdit({id, li, remove, edit, span}) {
-        var form, input, submit, cancel;
+        var form, input, submit, cancel, task, index;
         
         {
+            ({index, task} = findTaskWithId(id));
+
             form = document.createElement('form');
             form.classList.add(presets.taskElementClassEdit.form);
 
             input = document.createElement('input');
             input.setAttribute('type', 'text');
-            input.value = span.childNodes[0].nodeValue;
+            input.value = task.value;
             input.classList.add(presets.taskElementClassEdit.text);
 
             submit = document.createElement('input');

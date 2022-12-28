@@ -1,32 +1,95 @@
 :root {
+  --color1: #F88379;
+  --color2: #FBE5C0;
+  --color3: #D0E6F0;
+  --color4: #4C5D70;
+  --color5: #F0CCB0;
+  --color6: #B97D60;
+  --color7: #F0A160;
+  --color8: #F54D3D;
+  --color9: #fff;
+  --color10: #000;
+}
 
+html {
+  box-sizing: border-box;
+  height: 100%;
+  background-color: var(--color2);
 }
 
 *, *::after, *::before {
   box-sizing: inherit;
 }
 
-#app {}
-
-#todo .done {
-  text-decoration: line-through;
+input {
+  color: var(--color10);
+  border-style: none;
+  box-shadow: none;
+  outline: none;
 }
 
-#todo .onedit {
-  background-color: red;
+#app {
+  width: 440px;
+  margin: auto;
+  padding: 10px;
+  border: 2px solid var(--color1);
+  border-radius: 5px;
+  background-color: var(--color5);
 }
 
-#todo li {}
-#todo li .task-element-text {}
-#todo li .task-element-edit {}
-#todo li .task-element-remove {}
-
-#todo li .task-edit-element-form {}
-#todo li .task-edit-element-text {}
-#todo li .task-edit-element-cancel {}
-#todo li .task-edit-element-submit {}
-
-#todo-new-task {}
+#todo-new-task {
+  display: grid;
+  grid-template-columns: auto 50px;
+  margin-bottom: 5px;
+  border: 2px solid var(--color4);
+}
+#todo-new-task input {
+  background-color: var(--color9);
+  padding: 5px 10px;
+}
 #todo-new-task .new-task-text {}
 #todo-new-task .new-task-submit {}
 
+#todo {
+  margin: 0;
+  padding: 0;
+}
+
+#todo li {
+  list-style-type: none;
+  margin: 5px 0 0;
+  display: grid;
+  grid-template-columns: 50px auto 50px 50px;
+  padding-top: 5px;
+  border-top: 1px dashed var(--color1);
+}
+#todo li.done {}
+#todo li.done span {
+  text-decoration: line-through;
+}
+
+#todo li.onedit {
+  grid-template-columns: 50px auto;
+}
+#todo li input {
+  background-color: var(--color2);
+  color: var(--color4);
+}
+#todo li .task-element-text {
+  padding: 5px 10px;
+}
+#todo li .task-element-edit {}
+#todo li .task-element-remove {}
+#todo li .task-element-toggleState {}
+
+#todo li .task-edit-element-form {
+  display: grid;
+  grid-template-columns: auto 50px 50px;
+}
+#todo li .task-edit-element-text {
+  padding: 6px 10px;
+  background-color: var(--color3);
+  color: var(--color10);
+}
+#todo li .task-edit-element-cancel {}
+#todo li .task-edit-element-submit {}
