@@ -6,3 +6,27 @@
   box-sizing: inherit;
 }
 
+#app {}
+
+#todo .done {
+  text-decoration: line-through;
+}
+
+#todo .onedit {
+  background-color: red;
+}
+
+#todo li {}
+#todo li .task-element-text {}
+#todo li .task-element-edit {}
+#todo li .task-element-remove {}
+
+#todo li .task-edit-element-form {}
+#todo li .task-edit-element-text {}
+#todo li .task-edit-element-cancel {}
+#todo li .task-edit-element-submit {}
+
+#todo-new-task {}
+#todo-new-task .new-task-text {}
+#todo-new-task .new-task-submit {}
+
