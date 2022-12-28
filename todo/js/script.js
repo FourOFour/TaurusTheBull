@@ -51,7 +51,7 @@ const app = new function IIFE() {
     // We chose what do we expose to app
     return app;
 
-    // Have a function to all on load for initialization
+    // Have a function to call on load for initialization or anywhere we want.
     function init() {
         var app = document.querySelector('#app'),
             ul, form;
