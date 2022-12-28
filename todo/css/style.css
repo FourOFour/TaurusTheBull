@@ -1,0 +1,8 @@
+:root {
+
+}
+
+*, *::after, *::before {
+  box-sizing: inherit;
+}
+
