@@ -1,3 +1,5 @@
+<p id="Top" align="center"><img src="https://camo.githubusercontent.com/e1a54ddebc870cb971c713b20765f1c2ed328efff836eebe3c2bafccbc12bb0a/68747470733a2f2f696d672e69636f6e73382e636f6d2f636f6c6f722f3334342f6a6176617363726970742e706e67" width="100px" alt="JS"></p>
+
 ## Categories 
 * [**Basic**](#Basic)
     * [w3resource - JavaScript Basic](https://www.w3resource.com/javascript-exercises/javascript-basic-exercises.php)
