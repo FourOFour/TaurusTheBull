@@ -5,3 +5,7 @@
 #### This is a place that I will put some of my javascript exercises in, I made this repository for exercies purpose, so feel free to join in / contribute, send or make a challange.
 
 <br>
+
+
+- [todo](/todo)
+- [w3resource](/w3resource)
