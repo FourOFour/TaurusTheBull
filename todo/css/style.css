@@ -68,7 +68,9 @@ input {
   border-top: 1px dashed var(--color1);
   padding-top: 5px;
 }
+
 #todo li.done {}
+
 #todo li.done span {
   text-decoration: line-through;
 }
