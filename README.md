@@ -7,5 +7,5 @@
 <br>
 
 
-- [todo](/todo)
-- [w3resource](/w3resource)
+- [todo](todo)
+- [w3resource](w3resource)
