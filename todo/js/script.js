@@ -11,6 +11,7 @@ const app = new function IIFE() {
             taskViewContainerId: 'todo',
             taskIdPrefix: 'todo-task-',
             newTaskContainerId: 'todo-new-task',
+            newTaskInputPlaceHolder: 'Enter your new task here...',
             newTaskClassPrefix: 'new-task-',
             taskElementClassPrefix: 'task-element-',
             taskElementClassEditPrefix: 'task-edit-element-',
@@ -67,6 +68,7 @@ const app = new function IIFE() {
             let input = document.createElement('input');
             input.value = '';
             input.setAttribute('type', 'text');
+            input.setAttribute('placeholder', `${presets.newTaskInputPlaceHolder}`);
             input.classList.add(`${presets.newTaskClass.text}`);
 
             let submit = document.createElement('input');
