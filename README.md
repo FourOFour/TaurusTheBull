@@ -6,7 +6,7 @@
 
 <br>
 
-- [Preview of This page](https://fourofour.github.io/javascript-exercise-404)
+<a href="https://fourofour.github.io/javascript-exercise-404" target="_blank">Preview of This page</a>
 
 - [todo](todo)
 - [w3resource](w3resource)
