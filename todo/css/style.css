@@ -28,7 +28,7 @@ input {
   outline: none;
 }
 
-#app {
+.todo-container {
   width: 440px;
   margin: auto;
   padding: 10px;
@@ -37,25 +37,25 @@ input {
   background-color: var(--color5);
 }
 
-#todo-new-task {
+.todo-new-task {
   display: grid;
   grid-template-columns: auto 50px;
   margin-bottom: 5px;
   border: 2px solid var(--color4);
 }
-#todo-new-task input {
+.todo-new-task input {
   background-color: var(--color9);
   padding: 5px 10px;
 }
-#todo-new-task .new-task-text {}
-#todo-new-task .new-task-submit {}
+/* .todo-new-task .new-task-text {} */
+/* .todo-new-task .new-task-submit {} */
 
-#todo {
+.todo {
   margin: 0;
   padding: 0;
 }
 
-#todo li {
+.todo li {
   list-style-type: none;
   margin: 0 0 5px;
   display: grid;
@@ -64,39 +64,39 @@ input {
   border-bottom: 1px dashed var(--color1);
 }
 
-#todo li:first-child {
+.todo li:first-child {
   border-top: 1px dashed var(--color1);
   padding-top: 5px;
 }
 
-#todo li.done {}
+/* .todo li.done {} */
 
-#todo li.done span {
+.todo li.done span {
   text-decoration: line-through;
 }
 
-#todo li.onedit {
+.todo li.onedit {
   grid-template-columns: 50px auto;
 }
-#todo li input {
+.todo li input {
   background-color: var(--color2);
   color: var(--color4);
 }
-#todo li .task-element-text {
+.todo li .task-element-text {
   padding: 5px 10px;
 }
-#todo li .task-element-edit {}
-#todo li .task-element-remove {}
-#todo li .task-element-toggleState {}
+/* .todo li .task-element-edit {} */
+/* .todo li .task-element-remove {} */
+/* .todo li .task-element-toggleState {} */
 
-#todo li .task-edit-element-form {
+.todo li .task-edit-element-form {
   display: grid;
   grid-template-columns: auto 50px 50px;
 }
-#todo li .task-edit-element-text {
+.todo li .task-edit-element-text {
   padding: 6px 10px;
   background-color: var(--color3);
   color: var(--color10);
 }
-#todo li .task-edit-element-cancel {}
-#todo li .task-edit-element-submit {}
+/* .todo li .task-edit-element-cancel {} */
+/* .todo li .task-edit-element-submit {} */

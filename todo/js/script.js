@@ -1,16 +1,49 @@
-const app = new function IIFE() {
+function Todo(config) {
+    // Accepting and preseting arguments in object format - can't deconstruct as argument in case of it was undefined
+    /*
+        config : {
+            id: String,
+            shouldInit: Boolean
+        }
+    */
+    if (config == undefined) {
+        config = {
+            id: 'app',
+            shouldInit: true
+        }
+    }
+    // if Only one was undefined
+    if (config.id == undefined) config.id = 'app';
+    if (config.shouldInit == undefined) config.shouldInit = true;
+
     // Using var cause they will be used through the enitre scope
+    // + Private variables (execpt app)
     var app = {},
         newTaskContainer = null,
         taskViewContainer = null,
         tasks = [],
-        counter = 0,
-        // So we can change id or class from here if need to
-        presets = {
-            appId: 'app',
-            taskViewContainerId: 'todo',
+        counter = 0;
+
+    
+    /*
+        tasks[] example
+        [
+            {
+                id: Number,
+                value: String,
+                state: Boolean,
+                el: DOM-element
+            }
+        ]
+    */
+
+    // So we can change id or class from here if need to
+    var presets = {
+            appId: config.id,
+            appContainerClass: 'todo-container',
+            taskViewContainerClass: 'todo',
             taskIdPrefix: 'todo-task-',
-            newTaskContainerId: 'todo-new-task',
+            newTaskContainerClass: 'todo-new-task',
             newTaskInputPlaceHolder: 'Enter your new task here...',
             newTaskClassPrefix: 'new-task-',
             taskElementClassPrefix: 'task-element-',
@@ -36,23 +69,6 @@ const app = new function IIFE() {
             submit : `${presets.taskElementClassEditPrefix}submit`,
             cancel : `${presets.taskElementClassEditPrefix}cancel`
         };
-    
-    /*
-        tasks example
-        [
-            {
-                id: Number,
-                value: String,
-                state: Boolean,
-                el: DOM-element
-            }
-        ]
-    */
-    
-    init();
-
-    // We chose what do we expose to app object
-    return app;
 
     // Have a function to call on load for initialization or anywhere we want.
     function init() {
@@ -61,9 +77,8 @@ const app = new function IIFE() {
 
         {            
             form = document.createElement('form');
-            form.id = presets.newTaskContainerId;
             newTaskContainer = form;
-            form.classList.add(`${presets.newTaskClass.form}`);
+            form.classList.add(`${presets.newTaskClass.form}`, presets.newTaskContainerClass);
 
             let input = document.createElement('input');
             input.value = '';
@@ -87,12 +102,14 @@ const app = new function IIFE() {
         
         {
             ul = document.createElement('ul')
-            ul.id = presets.taskViewContainerId;
+            ul.classList.add(presets.taskViewContainerClass);
             taskViewContainer = ul;
         }
 
+        app.classList.add(`${presets.appContainerClass}`);
         app.append(newTaskContainer, taskViewContainer);
 
+        // Test Values
         addTask('test1');
         addTask('test2');
         addTask('test3');
@@ -100,6 +117,8 @@ const app = new function IIFE() {
         updateTask({id:1, value: 'Why?'});
         updateTask({id:2, state: true});
     }
+
+    app.init = init;
 
     function addTask(str) {
         var task, id;
@@ -119,44 +138,7 @@ const app = new function IIFE() {
         });
     }
 
-    function removeTask(id) {
-        var {index, task} = findTaskWithId(id);
-        
-        // Using a method that doesn't returns a shallow copy of the array insted modifies the existing array (for example not using filter)
-        tasks.splice(index, 1);
-        task.el.remove();
-    }
-
-    function updateTask({id, value, state}) {
-        var task, span;
-        
-        {
-            ({task, index} = findTaskWithId(id));
-
-            span = task.el.querySelector(`.${presets.taskElementClass.text}`);
-        }
-
-        // in case we just want to update only value or state not both at the same time
-        // since undefined is primitive type we don't have to worry about type coercion
-        if (value != undefined) {
-            task.value = value;
-
-            span.childNodes[0].nodeValue = value;
-        }
-
-        if (state != undefined) {
-            task.state = state;
-            
-
-            // It will only be Boolean
-            if (state) {
-                // No need to worry about duplicate class
-                task.el.classList.add(`${presets.taskDoneClass}`);
-            } else {
-                task.el.classList.remove(`${presets.taskDoneClass}`);
-            }
-        }
-    }
+    app.addTask = addTask;
 
     function createTaskElement({str, id}) {
         var li = document.createElement('li');
@@ -213,6 +195,64 @@ const app = new function IIFE() {
         return counter++;
     }
 
+    function removeTask(id) {
+        var {index, task} = findTaskWithId(id);
+        
+        // Using a method that doesn't returns a shallow copy of the array insted modifies the existing array (for example not using filter)
+        tasks.splice(index, 1);
+        task.el.remove();
+    }
+
+    app.removeTask = removeTask;
+
+    function findTaskWithId(id) {
+        var index, task;
+
+        {
+            task = tasks.find(function IIFE(v, i) {
+                if (v.id == id) {
+                    index = i;
+                    return true
+                };
+            });
+        }
+
+        return {index, task};
+    }
+
+    function updateTask({id, value, state}) {
+        var task, span;
+        
+        {
+            ({task, index} = findTaskWithId(id));
+
+            span = task.el.querySelector(`.${presets.taskElementClass.text}`);
+        }
+
+        // in case we just want to update only value or state not both at the same time
+        // since undefined is primitive type we don't have to worry about type coercion
+        if (value != undefined) {
+            task.value = value;
+
+            span.childNodes[0].nodeValue = value;
+        }
+
+        if (state != undefined) {
+            task.state = state;
+            
+
+            // It will only be Boolean
+            if (state) {
+                // No need to worry about duplicate class
+                task.el.classList.add(`${presets.taskDoneClass}`);
+            } else {
+                task.el.classList.remove(`${presets.taskDoneClass}`);
+            }
+        }
+    }
+
+    app.updateTask = updateTask;
+
     function setTaskToEdit({id, li, remove, edit, span}) {
         var form, input, submit, cancel, task, index;
         
@@ -260,6 +300,8 @@ const app = new function IIFE() {
         }
     }
 
+    app.setTaskToEdit = setTaskToEdit;
+
     function resetTaskToEdit({li, remove, edit, span, form}) {
         form.remove();
 
@@ -270,18 +312,15 @@ const app = new function IIFE() {
         li.classList.remove(`${presets.taskOnEditClass}`);
     }
 
-    function findTaskWithId(id) {
-        var index, task;
+    app.resetTaskToEdit = resetTaskToEdit;
+   
+    // shouldInit will only be Boolean
+    if (config.shouldInit) init();
 
-        {
-            task = tasks.find(function IIFE(v, i) {
-                if (v.id == id) {
-                    index = i;
-                    return true
-                };
-            });
-        }
-
-        return {index, task};
-    }
+    // We chose what do we expose to app object
+    return app;
 }
+
+var app = new Todo();
+var app2 = new Todo({id: 'app2', shouldInit: false});
+app2.init();
