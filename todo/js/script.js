@@ -1,20 +1,10 @@
-function Todo(config) {
-    // Accepting and preseting arguments in object format - can't deconstruct as argument in case of it was undefined
+function Todo({id = 'app', shouldInit = true} = {}) {
     /*
-        config : {
-            id: String,
-            shouldInit: Boolean
-        }
-    */
-    if (config == undefined) {
-        config = {
-            id: 'app',
+        Defult: {
+            id: 'app,
             shouldInit: true
         }
-    }
-    // if Only one was undefined
-    if (config.id == undefined) config.id = 'app';
-    if (config.shouldInit == undefined) config.shouldInit = true;
+    */
 
     // Using var cause they will be used through the enitre scope
     // + Private variables (execpt app)
@@ -23,7 +13,6 @@ function Todo(config) {
         taskViewContainer = null,
         tasks = [],
         counter = 0;
-
     
     /*
         tasks[] example
@@ -39,7 +28,7 @@ function Todo(config) {
 
     // So we can change id or class from here if need to
     var presets = {
-            appId: config.id,
+            appId: id,
             appContainerClass: 'todo-container',
             taskViewContainerClass: 'todo',
             taskIdPrefix: 'todo-task-',
@@ -52,23 +41,25 @@ function Todo(config) {
             taskDoneClass: 'done'
         };
     
-        presets.newTaskClass = {
+    Object.assign(presets, {
+        newTaskClass: {
             form: `${presets.newTaskClassPrefix}form`,
             text: `${presets.newTaskClassPrefix}text`,
             submit: `${presets.newTaskClassPrefix}submit`
-        };
-        presets.taskElementClass = {
+        },
+        taskElementClass: {
             text: `${presets.taskElementClassPrefix}text`,
             toggleState: `${presets.taskElementClassPrefix}toggleState`,
             edit: `${presets.taskElementClassPrefix}edit`,
             remove: `${presets.taskElementClassPrefix}remove`
-        };
-        presets.taskElementClassEdit = {
+        },
+        taskElementClassEdit: {
             form : `${presets.taskElementClassEditPrefix}form`,
             text : `${presets.taskElementClassEditPrefix}text`,
             submit : `${presets.taskElementClassEditPrefix}submit`,
             cancel : `${presets.taskElementClassEditPrefix}cancel`
-        };
+        }
+    });
 
     // Have a function to call on load for initialization or anywhere we want.
     function init() {
@@ -118,27 +109,7 @@ function Todo(config) {
         updateTask({id:2, state: true});
     }
 
-    app.init = init;
-
-    function addTask(str) {
-        var task, id;
-        
-        {
-            id = generateNewId();
-            task = createTaskElement({str, id});
-        }
-
-        taskViewContainer.append(task);
-
-        tasks.push({
-            id,
-            value: str,
-            state: false,
-            el: task
-        });
-    }
-
-    app.addTask = addTask;
+    Object.assign(app, {init});
 
     function createTaskElement({str, id}) {
         var li = document.createElement('li');
@@ -195,15 +166,25 @@ function Todo(config) {
         return counter++;
     }
 
-    function removeTask(id) {
-        var {index, task} = findTaskWithId(id);
+    function addTask(str) {
+        var task, id;
         
-        // Using a method that doesn't returns a shallow copy of the array insted modifies the existing array (for example not using filter)
-        tasks.splice(index, 1);
-        task.el.remove();
+        {
+            id = generateNewId();
+            task = createTaskElement({str, id});
+        }
+
+        taskViewContainer.append(task);
+
+        tasks.push({
+            id,
+            value: str,
+            state: false,
+            el: task
+        });
     }
 
-    app.removeTask = removeTask;
+    Object.assign(app, {addTask});
 
     function findTaskWithId(id) {
         var index, task;
@@ -219,6 +200,16 @@ function Todo(config) {
 
         return {index, task};
     }
+
+    function removeTask(id) {
+        var {index, task} = findTaskWithId(id);
+        
+        // Using a method that doesn't returns a shallow copy of the array insted modifies the existing array (for example not using filter)
+        tasks.splice(index, 1);
+        task.el.remove();
+    }
+
+    Object.assign(app, {removeTask});
 
     function updateTask({id, value, state}) {
         var task, span;
@@ -251,7 +242,7 @@ function Todo(config) {
         }
     }
 
-    app.updateTask = updateTask;
+    Object.assign(app, {updateTask});
 
     function setTaskToEdit({id, li, remove, edit, span}) {
         var form, input, submit, cancel, task, index;
@@ -300,7 +291,7 @@ function Todo(config) {
         }
     }
 
-    app.setTaskToEdit = setTaskToEdit;
+    Object.assign(app, {setTaskToEdit});
 
     function resetTaskToEdit({li, remove, edit, span, form}) {
         form.remove();
@@ -312,12 +303,12 @@ function Todo(config) {
         li.classList.remove(`${presets.taskOnEditClass}`);
     }
 
-    app.resetTaskToEdit = resetTaskToEdit;
+    Object.assign(app, {resetTaskToEdit});
    
     // shouldInit will only be Boolean
-    if (config.shouldInit) init();
+    if (shouldInit) init();
 
-    // We chose what do we expose to app object
+    // We chose what do we expose to app object instead of 'this'
     return app;
 }
 
