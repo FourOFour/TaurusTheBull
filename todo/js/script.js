@@ -1,30 +1,34 @@
 function Todo({id = 'app', shouldInit = true} = {}) {
     /*
-        Defult: {
+        defult: {
             id: 'app,
             shouldInit: true
         }
     */
 
-    // Using var cause they will be used through the enitre scope
+    // Using var because they will be used through the enitre scope
     // + Private variables (execpt app)
-    var app = {},
-        newTaskContainer = null,
-        taskViewContainer = null,
-        tasks = [],
-        counter = 0;
-    
+    var state = {
+        newTaskContainer: null,
+        taskViewContainer: null,
+        tasks: [],
+        counter: 0,
+        localStorage: window.localStorage
+    };
+
     /*
         tasks[] example
         [
             {
                 id: Number,
                 value: String,
-                state: Boolean,
+                isDone: Boolean,
                 el: DOM-element
             }
         ]
     */
+
+    var app = {};
 
     // So we can change id or class from here if need to
     var presets = {
@@ -49,7 +53,7 @@ function Todo({id = 'app', shouldInit = true} = {}) {
         },
         taskElementClass: {
             text: `${presets.taskElementClassPrefix}text`,
-            toggleState: `${presets.taskElementClassPrefix}toggleState`,
+            toggleIsDone: `${presets.taskElementClassPrefix}toggleIsDone`,
             edit: `${presets.taskElementClassPrefix}edit`,
             remove: `${presets.taskElementClassPrefix}remove`
         },
@@ -61,6 +65,32 @@ function Todo({id = 'app', shouldInit = true} = {}) {
         }
     });
 
+    function checkLocalStorage() {
+        var tasksList = JSON.parse(state.localStorage.getItem(`${presets.appId}TasksList`));
+
+        if (tasksList) {
+            tasksList.forEach(function({value, isDone}, i) {
+                addTask({value, isDone, storage: false});
+            });
+        }
+    }
+
+    function updateLocalStorage() {
+        // Only keeping the 'value' and 'isDone'
+        var tasksList = [];
+
+        {
+            state.tasks.forEach(function({value, isDone}, i) {
+                tasksList.push({
+                    value,
+                    isDone
+                })
+            });
+        }
+
+        state.localStorage.setItem(`${presets.appId}TasksList`, JSON.stringify(tasksList));
+    }
+
     // Have a function to call on load for initialization or anywhere we want.
     function init() {
         var app = document.querySelector(`#${presets.appId}`),
@@ -68,7 +98,7 @@ function Todo({id = 'app', shouldInit = true} = {}) {
 
         {            
             form = document.createElement('form');
-            newTaskContainer = form;
+            state.newTaskContainer = form;
             form.classList.add(`${presets.newTaskClass.form}`, presets.newTaskContainerClass);
 
             let input = document.createElement('input');
@@ -81,45 +111,38 @@ function Todo({id = 'app', shouldInit = true} = {}) {
             submit.value = 'add';
             submit.setAttribute('type', 'submit');
             submit.addEventListener('click', function IIFE(e) {
-                addTask(input.value);
+                addTask({value: input.value});
                 input.value = '';
 
                 e.preventDefault();
             });
             submit.classList.add(`${presets.newTaskClass.submit}`);
 
-            newTaskContainer.append(input, submit);
+            state.newTaskContainer.append(input, submit);
         }
         
         {
             ul = document.createElement('ul')
             ul.classList.add(presets.taskViewContainerClass);
-            taskViewContainer = ul;
+            state.taskViewContainer = ul;
         }
 
         app.classList.add(`${presets.appContainerClass}`);
-        app.append(newTaskContainer, taskViewContainer);
-
-        // Test Values
-        addTask('test1');
-        addTask('test2');
-        addTask('test3');
-        addTask('test4');
-        updateTask({id:1, value: 'Why?'});
-        updateTask({id:2, state: true});
+        app.append(state.newTaskContainer, state.taskViewContainer);
+        checkLocalStorage();
     }
 
     Object.assign(app, {init});
 
-    function createTaskElement({str, id}) {
+    function createTaskElement({value, id}) {
         var li = document.createElement('li');
 
         {
             let span = document.createElement('span');
-            let txt = document.createTextNode(str);
+            let txt = document.createTextNode(value);
             let remove = document.createElement('input');
             let edit = document.createElement('input');
-            let toggleState = document.createElement('input');
+            let toggleIsDone = document.createElement('input');
 
             edit.value = 'edit';
             edit.classList.add(presets.taskElementClass.edit);
@@ -142,20 +165,20 @@ function Todo({id = 'app', shouldInit = true} = {}) {
             span.classList.add(presets.taskElementClass.text);
             span.append(txt);
 
-            toggleState.value = 'toggle';
-            toggleState.setAttribute('type', 'button');
-            toggleState.addEventListener('click', function IIFE(e) {
+            toggleIsDone.value = 'toggle';
+            toggleIsDone.setAttribute('type', 'button');
+            toggleIsDone.addEventListener('click', function IIFE(e) {
                 var {task, index} = findTaskWithId(id);
 
-                task.state = !task.state;
+                task.isDone = !task.isDone;
                 
-                updateTask({id, state: task.state});
+                updateTask({id, isDone: task.isDone});
 
                 e.preventDefault();
             });
-            toggleState.classList.add(presets.taskElementClass.toggleState);
+            toggleIsDone.classList.add(presets.taskElementClass.toggleIsDone);
 
-            li.append(toggleState, span, edit, remove);
+            li.append(toggleIsDone, span, edit, remove);
             li.id = `${presets.taskIdPrefix}${id}`;
         }
 
@@ -163,25 +186,29 @@ function Todo({id = 'app', shouldInit = true} = {}) {
     }
 
     function generateNewId() {
-        return counter++;
+        return state.counter++;
     }
 
-    function addTask(str) {
+    function addTask({value, isDone = false, storage = true}) {
         var task, id;
         
         {
             id = generateNewId();
-            task = createTaskElement({str, id});
+            task = createTaskElement({value, id});
         }
 
-        taskViewContainer.append(task);
+        state.taskViewContainer.append(task);
 
-        tasks.push({
+        state.tasks.push({
             id,
-            value: str,
-            state: false,
+            value,
+            isDone,
             el: task
         });
+
+        if (storage) {
+            updateLocalStorage();
+        }
     }
 
     Object.assign(app, {addTask});
@@ -190,7 +217,7 @@ function Todo({id = 'app', shouldInit = true} = {}) {
         var index, task;
 
         {
-            task = tasks.find(function IIFE(v, i) {
+            task = state.tasks.find(function IIFE(v, i) {
                 if (v.id == id) {
                     index = i;
                     return true
@@ -205,13 +232,14 @@ function Todo({id = 'app', shouldInit = true} = {}) {
         var {index, task} = findTaskWithId(id);
         
         // Using a method that doesn't returns a shallow copy of the array insted modifies the existing array (for example not using filter)
-        tasks.splice(index, 1);
+        state.tasks.splice(index, 1);
         task.el.remove();
+        updateLocalStorage();
     }
 
     Object.assign(app, {removeTask});
 
-    function updateTask({id, value, state}) {
+    function updateTask({id, value, isDone}) {
         var task, span;
         
         {
@@ -220,7 +248,7 @@ function Todo({id = 'app', shouldInit = true} = {}) {
             span = task.el.querySelector(`.${presets.taskElementClass.text}`);
         }
 
-        // in case we just want to update only value or state not both at the same time
+        // in case we just want to update only value or isDone not both at the same time
         // since undefined is primitive type we don't have to worry about type coercion
         if (value != undefined) {
             task.value = value;
@@ -228,18 +256,20 @@ function Todo({id = 'app', shouldInit = true} = {}) {
             span.childNodes[0].nodeValue = value;
         }
 
-        if (state != undefined) {
-            task.state = state;
+        if (isDone != undefined) {
+            task.isDone = isDone;
             
 
             // It will only be Boolean
-            if (state) {
+            if (isDone) {
                 // No need to worry about duplicate class
                 task.el.classList.add(`${presets.taskDoneClass}`);
             } else {
                 task.el.classList.remove(`${presets.taskDoneClass}`);
             }
         }
+
+        updateLocalStorage();
     }
 
     Object.assign(app, {updateTask});
