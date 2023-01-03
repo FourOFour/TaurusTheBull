@@ -11,7 +11,7 @@ function Todo({id = 'app', shouldInit = true} = {}) {
     var state = {
         newTaskContainer: null,
         taskViewContainer: null,
-        tasks: [],
+        tasksList: [],
         counter: 0,
         localStorage: window.localStorage
     };
@@ -36,8 +36,7 @@ function Todo({id = 'app', shouldInit = true} = {}) {
             appContainerClass: 'todo-container',
             taskViewContainerClass: 'todo',
             taskIdPrefix: 'todo-task-',
-            newTaskContainerClass: 'todo-new-task',
-            newTaskInputPlaceHolder: 'Enter your new task here...',
+            newTaskInputPlaceHolder: '+ Add task...',
             newTaskClassPrefix: 'new-task-',
             taskElementClassPrefix: 'task-element-',
             taskElementClassEditPrefix: 'task-edit-element-',
@@ -80,7 +79,7 @@ function Todo({id = 'app', shouldInit = true} = {}) {
         var tasksList = [];
 
         {
-            state.tasks.forEach(function({value, isDone}, i) {
+            state.tasksList.forEach(function({value, isDone}, i) {
                 tasksList.push({
                     value,
                     isDone
@@ -99,7 +98,7 @@ function Todo({id = 'app', shouldInit = true} = {}) {
         {            
             form = document.createElement('form');
             state.newTaskContainer = form;
-            form.classList.add(`${presets.newTaskClass.form}`, presets.newTaskContainerClass);
+            form.classList.add(`${presets.newTaskClass.form}`);
 
             let input = document.createElement('input');
             input.value = '';
@@ -108,7 +107,7 @@ function Todo({id = 'app', shouldInit = true} = {}) {
             input.classList.add(`${presets.newTaskClass.text}`);
 
             let submit = document.createElement('input');
-            submit.value = 'add';
+            submit.value = '+';
             submit.setAttribute('type', 'submit');
             submit.addEventListener('click', function IIFE(e) {
                 addTask({value: input.value});
@@ -134,7 +133,7 @@ function Todo({id = 'app', shouldInit = true} = {}) {
 
     Object.assign(app, {init});
 
-    function createTaskElement({value, id}) {
+    function createTaskElement({value, id, isDone}) {
         var li = document.createElement('li');
 
         {
@@ -148,12 +147,12 @@ function Todo({id = 'app', shouldInit = true} = {}) {
             edit.classList.add(presets.taskElementClass.edit);
             edit.setAttribute('type', 'button');
             edit.addEventListener('click', function IIFE(e) {
-                setTaskToEdit({id, li, remove, edit, span});
+                setTaskToEdit({id, li, remove, edit, span, toggleIsDone});
 
                 e.preventDefault();
             });
 
-            remove.value = 'del';
+            remove.value = 'x';
             remove.setAttribute('type', 'button');
             remove.addEventListener('click', function IIFE(e) {
                 removeTask(id);
@@ -164,20 +163,30 @@ function Todo({id = 'app', shouldInit = true} = {}) {
 
             span.classList.add(presets.taskElementClass.text);
             span.append(txt);
+            span.addEventListener('click', function IIFE(e) {
+                toggleIsDone.click();
 
-            toggleIsDone.value = 'toggle';
-            toggleIsDone.setAttribute('type', 'button');
+                e.preventDefault();
+            });
+
+            toggleIsDone.checked = isDone;
+            toggleIsDone.setAttribute('type', 'checkbox');
             toggleIsDone.addEventListener('click', function IIFE(e) {
                 var {task, index} = findTaskWithId(id);
 
                 task.isDone = !task.isDone;
-                
+                toggleIsDone.checked = task.isDone;
+
                 updateTask({id, isDone: task.isDone});
 
-                e.preventDefault();
+                // if the checkbox's state is changed, this content attribute does not reflect the change. 
+                // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#attr-checked
+                // need the event default to change it's state
+                // e.preventDefault(); 
             });
             toggleIsDone.classList.add(presets.taskElementClass.toggleIsDone);
 
+            li.classList.add('animate-flipinx');
             li.append(toggleIsDone, span, edit, remove);
             li.id = `${presets.taskIdPrefix}${id}`;
         }
@@ -189,25 +198,36 @@ function Todo({id = 'app', shouldInit = true} = {}) {
         return state.counter++;
     }
 
+    function isDuplicate(value) {
+        return state.tasksList.some(function(v) {
+            if (value == v.value) return true;
+        })
+    }
+
     function addTask({value, isDone = false, storage = true}) {
-        var task, id;
+        if (isDuplicate(value)) {
+            // handle duplicate
+            console.log('duplicate');
+        } else {
+            var task, id;
         
-        {
-            id = generateNewId();
-            task = createTaskElement({value, id});
-        }
-
-        state.taskViewContainer.append(task);
-
-        state.tasks.push({
-            id,
-            value,
-            isDone,
-            el: task
-        });
-
-        if (storage) {
-            updateLocalStorage();
+            {
+                id = generateNewId();
+                task = createTaskElement({value, id, isDone});
+            }
+    
+            state.taskViewContainer.append(task);
+    
+            state.tasksList.push({
+                id,
+                value,
+                isDone,
+                el: task
+            });
+    
+            if (storage) {
+                updateLocalStorage();
+            }
         }
     }
 
@@ -217,7 +237,7 @@ function Todo({id = 'app', shouldInit = true} = {}) {
         var index, task;
 
         {
-            task = state.tasks.find(function IIFE(v, i) {
+            task = state.tasksList.find(function IIFE(v, i) {
                 if (v.id == id) {
                     index = i;
                     return true
@@ -232,8 +252,13 @@ function Todo({id = 'app', shouldInit = true} = {}) {
         var {index, task} = findTaskWithId(id);
         
         // Using a method that doesn't returns a shallow copy of the array insted modifies the existing array (for example not using filter)
-        state.tasks.splice(index, 1);
-        task.el.remove();
+        state.tasksList.splice(index, 1);
+        task.el.classList.add('animate-flipoux');
+
+        setTimeout(function IIFE() {
+            task.el.remove();
+        }, 1000);
+
         updateLocalStorage();
     }
 
@@ -274,7 +299,7 @@ function Todo({id = 'app', shouldInit = true} = {}) {
 
     Object.assign(app, {updateTask});
 
-    function setTaskToEdit({id, li, remove, edit, span}) {
+    function setTaskToEdit({id, li, remove, edit, span, toggleIsDone}) {
         var form, input, submit, cancel, task, index;
         
         {
@@ -290,13 +315,13 @@ function Todo({id = 'app', shouldInit = true} = {}) {
 
             submit = document.createElement('input');
             submit.setAttribute('type', 'submit');
-            submit.value = 'Finish';
+            submit.value = 'done';
             submit.addEventListener('click', function IIFE(e) {
                 var value = input.value ? input.value : 'empty';
 
                 updateTask({id, value});
                 
-                resetTaskToEdit({li, remove, edit, span, form});
+                resetTaskToEdit({li, remove, edit, span, form, toggleIsDone});
                 e.preventDefault();
             });
             submit.classList.add(presets.taskElementClassEdit.submit);
@@ -305,7 +330,7 @@ function Todo({id = 'app', shouldInit = true} = {}) {
             cancel.setAttribute('type', 'button');
             cancel.value = 'cancel';
             cancel.addEventListener('click', function IIFE(e) {
-                resetTaskToEdit({li, remove, edit, span, form});
+                resetTaskToEdit({li, remove, edit, span, form, toggleIsDone});
 
                 e.preventDefault();
             });
@@ -314,6 +339,7 @@ function Todo({id = 'app', shouldInit = true} = {}) {
             span.hidden = true;
             remove.hidden = true;
             edit.hidden = true;
+            toggleIsDone.hidden = true;
 
             form.append(input, cancel, submit);
             li.append(form);
@@ -323,12 +349,13 @@ function Todo({id = 'app', shouldInit = true} = {}) {
 
     Object.assign(app, {setTaskToEdit});
 
-    function resetTaskToEdit({li, remove, edit, span, form}) {
+    function resetTaskToEdit({li, remove, edit, span, form, toggleIsDone}) {
         form.remove();
 
         span.hidden = false;
         remove.hidden = false;
         edit.hidden = false;
+        toggleIsDone.hidden = false;
 
         li.classList.remove(`${presets.taskOnEditClass}`);
     }
