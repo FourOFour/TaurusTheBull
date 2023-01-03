@@ -93,7 +93,9 @@ html {
 
 /* .todo li:first-child {} */
 /* .todo li.done {} */
-/* .todo li.done span {} */
+.todo li.done .task-element-text {
+  text-decoration: line-through;
+}
 
 .todo li.onedit {
   grid-template-columns: auto;

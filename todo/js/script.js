@@ -186,6 +186,8 @@ function Todo({id = 'app', shouldInit = true} = {}) {
             });
             toggleIsDone.classList.add(presets.taskElementClass.toggleIsDone);
 
+            if (isDone) li.classList.add('done');
+
             li.classList.add('animate-flipinx');
             li.append(toggleIsDone, span, edit, remove);
             li.id = `${presets.taskIdPrefix}${id}`;
