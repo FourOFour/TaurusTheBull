@@ -200,6 +200,7 @@ function Todo({id = 'app', shouldInit = true} = {}) {
         return state.counter++;
     }
 
+    // Incase we need to check
     function isDuplicate(value) {
         return state.tasksList.some(function(v) {
             if (value == v.value) return true;
@@ -207,29 +208,24 @@ function Todo({id = 'app', shouldInit = true} = {}) {
     }
 
     function addTask({value, isDone = false, storage = true}) {
-        if (isDuplicate(value)) {
-            // handle duplicate
-            console.log('duplicate');
-        } else {
-            var task, id;
-        
-            {
-                id = generateNewId();
-                task = createTaskElement({value, id, isDone});
-            }
+        var task, id;
     
-            state.taskViewContainer.append(task);
-    
-            state.tasksList.push({
-                id,
-                value,
-                isDone,
-                el: task
-            });
-    
-            if (storage) {
-                updateLocalStorage();
-            }
+        {
+            id = generateNewId();
+            task = createTaskElement({value, id, isDone});
+        }
+
+        state.taskViewContainer.append(task);
+
+        state.tasksList.push({
+            id,
+            value,
+            isDone,
+            el: task
+        });
+
+        if (storage) {
+            updateLocalStorage();
         }
     }
 
@@ -351,7 +347,7 @@ function Todo({id = 'app', shouldInit = true} = {}) {
 
     Object.assign(app, {setTaskToEdit});
 
-    function resetTaskToEdit({li, remove, edit, span, form, toggleIsDone}) {
+    function resetTaskToEdit({li, remove, edit, span, toggleIsDone, form}) {
         form.remove();
 
         span.hidden = false;
