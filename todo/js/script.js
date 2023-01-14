@@ -1,7 +1,7 @@
 function Todo({id = 'app', shouldInit = true} = {}) {
     /*
         defult: {
-            id: 'app,
+            id: 'app',
             shouldInit: true
         }
     */
@@ -273,15 +273,14 @@ function Todo({id = 'app', shouldInit = true} = {}) {
 
         // in case we just want to update only value or isDone not both at the same time
         // since undefined is primitive type we don't have to worry about type coercion
-        if (value != undefined) {
+        if (value) {
             task.value = value;
 
             span.childNodes[0].nodeValue = value;
         }
 
         if (isDone != undefined) {
-            task.isDone = isDone;
-            
+            task.isDone = isDone;            
 
             // It will only be Boolean
             if (isDone) {
