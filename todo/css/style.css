@@ -163,3 +163,22 @@ html {
 .todo li:hover .task-edit-element-submit:hover {
   opacity: 1;
 }
+
+/* 
+@media (max-width: 480px) {
+  html {
+      background-image: url(https://media.emailonacid.com/wp-content/uploads/2019/05/EOA_MediaQueries2019_Blog.jpg);
+  }
+}
+
+@media (min-width: 481px) and (max-width: 1024px) {
+  html {
+      background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLVPnsE5TUEWPtPaODcAtEDydbzAPNq35AXlx1rwPmOytVcPEA6kdoQK9wfHnyGtOARnI&usqp=CAU);
+  }
+}
+
+@media (min-width: 1025px) {
+  html {
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTN5evVVFyhMx8JavXLJR18hnFiI50Vr7y-FQz2TOmM9sw91SlmRm_rceUC6mJqm9BSsG0&usqp=CAU);
+  }
+} */
