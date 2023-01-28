@@ -1,50 +1,7 @@
-function TodoLogic({id = 'app', shouldInit = true, presets = {}} = {}) {
-    // deafultPresets is rooted in this constructor that is why it comes very first thing 
-    var deafultPresets;
-    
-    // TODO:If i was using modular pattern using default as json or module would be much much cleaner
-    {
-        deafultPresets = {
-            appId: id,
-            appContainerClass: 'todo-container',
-            taskViewContainerClass: 'todo',
-            taskIdPrefix: 'todo-task-',
-            newTaskInputPlaceHolder: '+ Add task...',
-            newTaskClassPrefix: 'new-task-',
-            taskElementClassPrefix: 'task-element-',
-            taskElementClassEditPrefix: 'task-edit-element-',
-            taskOnEditClass: 'onedit',
-            taskDoneClass: 'done'
-        };
+import TodoRender from "./render";
+import deafultPresets from "./defaultPresets";
 
-        deafultPresets.newTaskClass = {
-                form: `${deafultPresets.newTaskClassPrefix}form`,
-                text: `${deafultPresets.newTaskClassPrefix}text`,
-                submit: `${deafultPresets.newTaskClassPrefix}submit`
-        };
-
-        deafultPresets.taskElementClass = {
-            text: `${deafultPresets.taskElementClassPrefix}text`,
-            toggleIsDone: `${deafultPresets.taskElementClassPrefix}toggleIsDone`,
-            edit: `${deafultPresets.taskElementClassPrefix}edit`,
-            remove: `${deafultPresets.taskElementClassPrefix}remove`
-        };
-        
-        deafultPresets.taskElementClassEdit = {
-            form : `${deafultPresets.taskElementClassEditPrefix}form`,
-            text : `${deafultPresets.taskElementClassEditPrefix}text`,
-            submit : `${deafultPresets.taskElementClassEditPrefix}submit`,
-            cancel : `${deafultPresets.taskElementClassEditPrefix}cancel`
-        };
-        
-        deafultPresets.taskElementClassEdit = {
-            form : `${deafultPresets.taskElementClassEditPrefix}form`,
-            text : `${deafultPresets.taskElementClassEditPrefix}text`,
-            submit : `${deafultPresets.taskElementClassEditPrefix}submit`,
-            cancel : `${deafultPresets.taskElementClassEditPrefix}cancel`
-        };
-    }
-
+export default function TodoLogic({id, shouldInit = true, presets = {}} = {}) {
     // example of default values
     /*
         defult: {
@@ -69,6 +26,8 @@ function TodoLogic({id = 'app', shouldInit = true, presets = {}} = {}) {
 
     // so we can over-write any preset we want
     presets = Object.assign({}, deafultPresets, presets);
+    
+    if (id) presets.appId = id;
 
     var state = {
         newTaskContainer: null,

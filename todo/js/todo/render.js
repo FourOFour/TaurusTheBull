@@ -1,4 +1,4 @@
-function TodoRender({
+export default function TodoRender({
         id = 'app',
         shouldInit = true,
         eventsHandler = {

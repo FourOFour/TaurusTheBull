@@ -1,4 +1,4 @@
-function Toaster({id = "toaster-container", shouldInit = true} = {}) {
+export default function Toaster({id = "toaster-container", shouldInit = true} = {}) {
     // Public API
     var app = {}
 
