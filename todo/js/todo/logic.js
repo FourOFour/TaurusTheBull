@@ -1,5 +1,5 @@
-import TodoRender from "./render";
-import deafultPresets from "./defaultPresets";
+import TodoRender from "./render.js";
+import deafultPresets from "./defaultPresets.js";
 
 export default function TodoLogic({id, shouldInit = true, presets = {}} = {}) {
     // example of default values
