@@ -34,5 +34,3 @@ export default function Toaster({id = "toaster-container", shouldInit = true} = 
 
     return app;
 }
-
-// var toaster = new Toaster();

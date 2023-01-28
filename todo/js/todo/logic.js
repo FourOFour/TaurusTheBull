@@ -5,7 +5,7 @@ export default function TodoLogic({id, shouldInit = true, presets = {}} = {}) {
     // example of default values
     /*
         defult: {
-            id: 'app',
+            id: 'app', // this will load by default from deafultPresets / deafultPresets.appId
             shouldInit: true,
             presets = {}
         }
@@ -26,7 +26,7 @@ export default function TodoLogic({id, shouldInit = true, presets = {}} = {}) {
 
     // so we can over-write any preset we want
     presets = Object.assign({}, deafultPresets, presets);
-    
+
     if (id) presets.appId = id;
 
     var state = {
