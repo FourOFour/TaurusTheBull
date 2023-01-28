@@ -96,10 +96,10 @@ function TodoLogic({id = 'app', shouldInit = true, presets = {}} = {}) {
     */
     var eventsHandler = {
         addTaskSubmit: function addTaskSubmit(event) {
-            var parent, input, value;
+            var input, value;
     
             {
-                parent = event.currentTarget.closest(`.${presets.newTaskClass.form}`);
+                let parent = event.currentTarget.closest(`.${presets.newTaskClass.form}`);
                 input = parent.querySelector(`.${presets.newTaskClass.text}`);
     
                 value = input.value;
