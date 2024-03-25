@@ -1,3 +1,5 @@
 import TodoLogic from "./todo/logic.js";
 
-var app = new TodoLogic();
+document.addEventListener('DOMContentLoaded', function(event) {
+    var app = new TodoLogic();
+});

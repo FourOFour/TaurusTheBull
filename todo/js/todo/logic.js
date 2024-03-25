@@ -11,14 +11,13 @@ export default function TodoLogic({id, shouldInit = true, presets = {}} = {}) {
         }
     */
 
-    // Using var because they will be used through the enitre scope
-    // + Private variables (execpt app)
     /*
         In case someone wants to only make changes or edit
         presets.newTaskClass.form ( for example )
-        they don't need to pass all properties
+        they don't need to pass all the properties
         (if not it will be overwriten)
         A bit seems too much code but gives us too much flexbility
+        and we avoid a corner case;
     */
     presets.newTaskClass = Object.assign({}, deafultPresets.newTaskClass, presets.newTaskClass);
     presets.taskElementClass = Object.assign({}, deafultPresets.taskElementClass, presets.taskElementClass);
@@ -28,6 +27,10 @@ export default function TodoLogic({id, shouldInit = true, presets = {}} = {}) {
     presets = Object.assign({}, deafultPresets, presets);
 
     if (id) presets.appId = id;
+    
+    // Using var because they will be used through the enitre scope
+    // + Private variables (execpt app)
+    var app = {};
 
     var state = {
         newTaskContainer: null,
@@ -157,8 +160,6 @@ export default function TodoLogic({id, shouldInit = true, presets = {}} = {}) {
         }
     }
     
-    var app = {};
-
     function checkLocalStorage() {
         var tasksList = JSON.parse(state.localStorage.getItem(`${presets.appId}TasksList`));
 
@@ -193,21 +194,6 @@ export default function TodoLogic({id, shouldInit = true, presets = {}} = {}) {
             eventsHandler,
             presets
         });
-        // addTask({value: 'salam1'});
-        // addTask({value: 'salam2'});
-        // addTask({value: 'salam3'});
-        // addTask({value: 'salam4'});
-        // addTask({value: 'salam5'});
-        // addTask({value: 'salam6'});
-        // addTask({value: 'salam7'});
-        // addTask({value: 'salam8'});
-        // addTask({value: 'salam9'});
-        // addTask({value: 'salam10'});
-        // addTask({value: 'salam11'});
-        // addTask({value: 'salam12'});
-        // addTask({value: 'salam13'});
-        // removeTask(4,5);
-        // updateTask({id:2, value:'bye'}, {id:3, isDone: true});
         checkLocalStorage();
     }
 
